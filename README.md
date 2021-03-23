@@ -21,3 +21,5 @@ JSON ESLint config example:
 ```
 
 ### Rules
+
+ - [Expose Class on Global](./docs/rules/expose-class-on-global.md)
