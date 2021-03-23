@@ -21,3 +21,5 @@ JSON ESLint config example:
 ```
 
 ### Rules
+
+ - [No DOM Traversal in Connectedcallback](./docs/rules/no-dom-traversal-in-connectedcallback.md)
