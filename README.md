@@ -21,3 +21,5 @@ JSON ESLint config example:
 ```
 
 ### Rules
+
+ - [No Constructor](./docs/rules/no-constructor.md)
