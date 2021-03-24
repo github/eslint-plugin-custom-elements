@@ -47,6 +47,8 @@ class FooBarElement extends HTMLElement {
 
 ## When Not To Use It
 
-If you 
+If you are comfortable with the edge cases of DOM traversal directly in the `connectedCallback` then you can disable this rule.
 
 ## Version
+
+This rule was introduced in 0.0.1
