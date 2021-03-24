@@ -1,6 +1,6 @@
 # eslint-plugin-custom-elements
 
-This is an Eslint Plugin to help provide best practices for writing Custom Elements aka Web Components. It provides a set of custom rules which can be enforced for files which declare classes that extend from HTMLElement.
+This is an ESLint Plugin to help provide best practices for writing Custom Elements aka Web Components. It provides a set of custom rules which can be enforced for files that declare classes that extend from HTMLElement.
 
 ## Installation
 
@@ -22,4 +22,5 @@ JSON ESLint config example:
 
 ### Rules
 
+ - [Define Tag After Class Definition](./docs/rules/define-tag-after-class-definition.md)
  - [No Constructor](./docs/rules/no-constructor.md)
