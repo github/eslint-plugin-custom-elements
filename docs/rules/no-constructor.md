@@ -7,11 +7,23 @@ This rule disallows using the `constructor` in a HTMLElement class.
 👎 Examples of **incorrect** code for this rule:
 
 ```js
+class FooBar extends HTMLElement {
+  constructor() {
+    super()
+    this.initialState = {}
+  }
+}
 ```
 
 👍 Examples of **correct** code for this rule:
 
 ```js
+class FooBar extends HTMLElement {
+  connectedCallback() {
+    super()
+    this.initialState = {}
+  }
+}
 ```
 
 The `constructor` method is a little unwieldy to use for subclasses. It is called as soon as the class is instantiated with `document.createElement` which will be _before_ the element has been appended to the DOM.
