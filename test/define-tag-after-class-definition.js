@@ -35,7 +35,7 @@ ruleTester.run('define-tag-after-class-definition', rule, {
       code: 'window.customElements.define("foo-bar", class extends HTMLElement {})',
       errors: [
         {
-          message: 'Custom Element has not been registered with `define`',
+          message: 'Inlining Custom Element definition prevents it being used in the file',
           type: 'ClassExpression'
         }
       ]
