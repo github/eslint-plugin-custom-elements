@@ -23,3 +23,4 @@ JSON ESLint config example:
 ### Rules
 
  - [Define Tag After Class Definition](./docs/rules/define-tag-after-class-definition.md)
+ - [Extends Correct Class](./docs/rules/extends-correct-class.md)
