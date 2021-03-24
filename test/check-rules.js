@@ -65,8 +65,11 @@ describe('documentation', () => {
     const contents = fs.readFileSync(`./README.md`, 'utf-8').split('\n')
     const i = contents.indexOf('### Rules')
     const n = contents.findIndex((line, index) => index > i && line.startsWith('#')) || contents.length
-    const ruleLinks = contents.slice(i + 1, n).filter(Boolean)
-    const desiredRuleLinks = rulesFromDir('docs/rules').map(rule => ` - [${makeTitle(rule)}](./docs/rules/${rule}.md)`)
+    const ruleLinks = contents
+      .slice(i + 1, n)
+      .filter(Boolean)
+      .map(x => x.trim())
+    const desiredRuleLinks = rulesFromDir('docs/rules').map(rule => `- [${makeTitle(rule)}](./docs/rules/${rule}.md)`)
     assert.deepStrictEqual(desiredRuleLinks, ruleLinks, 'Expected each rule in docs/rules/*.md to have README link')
   })
 
