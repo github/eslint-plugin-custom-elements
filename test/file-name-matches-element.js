@@ -8,6 +8,7 @@ ruleTester.run('file-name-matches-element', rule, {
   valid: [
     {code: 'class SomeMap extends Map {}', filename: 'not-an-element.js'},
     {code: 'class FooBarElement {}', filename: 'not-related.js'},
+    {code},
     {code, filename: '<text>'},
     {code, filename: '<input>'},
     {code, filename: 'fooBarElement.js'},
