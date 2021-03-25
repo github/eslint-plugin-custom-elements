@@ -9,7 +9,7 @@ This rule enforces the name of the file an Element exists in matches the name of
 👎 Examples of **incorrect** code for this rule:
 
 ```js
-// elements.ts
+// element.ts
 class FooBarElement extends HTMLElement {
 }
 ```
@@ -17,7 +17,7 @@ class FooBarElement extends HTMLElement {
 👍 Examples of **correct** code for this rule:
 
 ```js
-// foo-bar-elements.ts
+// foo-bar-element.ts
 class FooBarElement extends HTMLElement {
 }
 ```
