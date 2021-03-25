@@ -23,4 +23,5 @@ JSON ESLint config example:
 ### Rules
 
  - [Define Tag After Class Definition](./docs/rules/define-tag-after-class-definition.md)
+ - [Expose Class on Global](./docs/rules/expose-class-on-global.md)
  - [File Name Matches Element](./docs/rules/file-name-matches-element.md)
