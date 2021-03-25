@@ -22,7 +22,6 @@ class FirstElement extends HTMLElement {}
 class SecondElement extends HTMLElement {}
 ```
 
-
 Declaring multiple Custom Elements per file can:
 
  - Result in large files which are difficult to navigate.
