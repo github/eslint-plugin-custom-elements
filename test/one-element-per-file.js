@@ -22,6 +22,25 @@ ruleTester.run('one-element-per-file', rule, {
           line: 2
         }
       ]
+    },
+    {
+      code: `
+class FooBarElement extends HTMLElement {}
+class BarFooElement extends HTMLElement {}
+class BazFooElement extends HTMLElement {}
+`,
+      errors: [
+        {
+          message: 'Only one Custom Element should be specified per file',
+          type: 'ClassDeclaration',
+          line: 3
+        },
+        {
+          message: 'Only one Custom Element should be specified per file',
+          type: 'ClassDeclaration',
+          line: 4
+        }
+      ]
     }
   ]
 })
