@@ -35,7 +35,7 @@ Many expectations from an element are not true during the `constructor` call. Fo
  - access any child elements (`.children` will always be an empty `HTMLCollection`).
  - Fire events that bubble. As the node is not connected it cannot bubble.
 
-Also there are many edge cases which can cause complications when within the constructor, for example:
+Also, there are many edge cases that can cause complications inside the constructor, for example:
 
  - Creating child elements and appending them, this will cause _their_ connected callbacks to fire, but their parent (the current element) will be disconnected from the DOM.
  - Changing attributes will cause `attributeChangedCallback` to fire, which may expect to be connected.
