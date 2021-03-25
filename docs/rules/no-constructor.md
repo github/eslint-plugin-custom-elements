@@ -20,7 +20,6 @@ class FooBar extends HTMLElement {
 ```js
 class FooBar extends HTMLElement {
   connectedCallback() {
-    super()
     this.initialState = {}
   }
 }
