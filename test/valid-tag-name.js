@@ -13,7 +13,6 @@ ruleTester.run('valid-tag-name', rule, {
     {code: 'customElements.define("aÀ-")'},
     {code: 'customElements.define("leiðinlegt-tíst")'},
     {code: 'customElements.define("a-😶‍🌫️")'},
-    {code: 'customElements.define("notice-©")'},
     {code: 'customElements.define("a-b-c-")', options: [{onlyAlphanum: true}]},
     {code: 'customElements.define("foo-bar")', options: [{disallowNamespaces: true}]},
     {code: 'customElements.define("ng-bar")', options: [{disallowNamespaces: true, prefix: 'ng'}]}
@@ -60,6 +59,15 @@ ruleTester.run('valid-tag-name', rule, {
       errors: [
         {
           message: 'Custom Element names must start with a letter',
+          type: 'Literal'
+        }
+      ]
+    },
+    {
+      code: 'customElements.define("notice-©")',
+      errors: [
+        {
+          message: 'notice-© is not a valid custom element name',
           type: 'Literal'
         }
       ]
