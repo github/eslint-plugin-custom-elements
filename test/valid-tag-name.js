@@ -22,7 +22,7 @@ ruleTester.run('valid-tag-name', rule, {
       code: 'customElements.define("foo")',
       errors: [
         {
-          message: 'Custom Element names must contain at least one dash (-)',
+          message: 'foo is not a valid custom element name\nCustom Element names must contain at least one dash (-)',
           type: 'Literal'
         }
       ]
@@ -31,7 +31,7 @@ ruleTester.run('valid-tag-name', rule, {
       code: 'customElements.define("-foo-bar")',
       errors: [
         {
-          message: 'Custom Element names must not start with a dash (-)',
+          message: '-foo-bar is not a valid custom element name\nCustom Element names must start with a letter',
           type: 'Literal'
         }
       ]
@@ -40,7 +40,7 @@ ruleTester.run('valid-tag-name', rule, {
       code: 'customElements.define("foo-BAR")',
       errors: [
         {
-          message: 'Custom Element names must not contain capital letters',
+          message: 'foo-BAR is not a valid custom element name\nCustom Element names must not contain capital letters',
           type: 'Literal'
         }
       ]
@@ -49,7 +49,7 @@ ruleTester.run('valid-tag-name', rule, {
       code: 'customElements.define("<an-element>")',
       errors: [
         {
-          message: 'Custom Element names must not include the tag syntax (<>)',
+          message: '<an-element> is not a valid custom element name\nCustom Element names must start with a letter',
           type: 'Literal'
         }
       ]
@@ -58,7 +58,7 @@ ruleTester.run('valid-tag-name', rule, {
       code: 'customElements.define("911-emergency")',
       errors: [
         {
-          message: 'Custom Element names must start with a letter',
+          message: '911-emergency is not a valid custom element name\nCustom Element names must start with a letter',
           type: 'Literal'
         }
       ]
