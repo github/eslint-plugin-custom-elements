@@ -23,7 +23,6 @@ ruleTester.run('tag-name-matches-class', rule, {
     {code: `customElements.define('foo-bar', FooBar)`, options: [{prefix: ['Iron', 'Copper']}]},
     {code: `customElements.define('foo-bar', IronFooBar)`, options: [{prefix: ['Iron', 'Copper']}]},
     {code: `customElements.define('foo-bar', CopperFooBar)`, options: [{prefix: ['Iron', 'Copper']}]},
-    {code: `customElements.define('foo-bar', FooBar)`},
     {code: `customElements.define('foo-bar', class FooBar extends HTMLElement {})`},
     {code: `customElements.define('foo-bar', class {})`},
     {
