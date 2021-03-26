@@ -110,6 +110,26 @@ ruleTester.run('tag-name-matches-class', rule, {
           type: 'Literal'
         }
       ]
+    },
+    {
+      code: `customElements.define('bar-foo', CopperFooBarComponent)`,
+      options: [{prefix: ['Iron', 'Copper'], suffix: ['Element', 'Component']}],
+      errors: [
+        {
+          message: 'Custom Element tag name should have been "foo-bar" but was "bar-foo"',
+          type: 'Literal'
+        }
+      ]
+    },
+    {
+      code: `customElements.define('bar-foo', FooBarCopper)`,
+      options: [{prefix: ['Copper']}],
+      errors: [
+        {
+          message: 'Custom Element tag name should have been "foo-bar-copper" but was "bar-foo"',
+          type: 'Literal'
+        }
+      ]
     }
   ]
 })
