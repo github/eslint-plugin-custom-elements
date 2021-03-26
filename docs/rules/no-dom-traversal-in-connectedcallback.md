@@ -6,6 +6,8 @@ It is instead preferable to move such DOM traversals into event listeners, or a 
 
 ## Rule Details
 
+This rule disallows using DOM traversal APIs within the `connectedCallback`.
+
 👎 Examples of **incorrect** code for this rule:
 
 ```js
