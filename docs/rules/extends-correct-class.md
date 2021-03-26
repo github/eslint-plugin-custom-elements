@@ -34,7 +34,7 @@ customElements.define('foo-bar', class extends HTMLParagraphElement, { extends: 
 
 ## When Not To Use It
 
-
+If you are comfortable with silent failures when extending types don't match. 
 
 ## Version
 
