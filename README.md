@@ -25,6 +25,7 @@ JSON ESLint config example:
 
 - [Define Tag After Class Definition](./docs/rules/define-tag-after-class-definition.md)
 - [Expose Class on Global](./docs/rules/expose-class-on-global.md)
+- [Extends Correct Class](./docs/rules/extends-correct-class.md)
 - [File Name Matches Element](./docs/rules/file-name-matches-element.md)
 - [No Constructor](./docs/rules/no-constructor.md)
 - [No Customized Built in Elements](./docs/rules/no-customized-built-in-elements.md)
