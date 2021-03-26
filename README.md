@@ -29,3 +29,4 @@ JSON ESLint config example:
 - [No Constructor](./docs/rules/no-constructor.md)
 - [No Customized Built in Elements](./docs/rules/no-customized-built-in-elements.md)
 - [One Element Per File](./docs/rules/one-element-per-file.md)
+- [Valid Tag Name](./docs/rules/valid-tag-name.md)
