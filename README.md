@@ -13,6 +13,7 @@ $ npm install --save-dev eslint eslint-plugin-custom-elements
 Add `custom-elements` to your list of plugins in your ESLint config, and `plugin:custom-elements/recommended` to the `extends` array.
 
 JSON ESLint config example:
+
 ```json
 {
   "plugins": ["github"],
@@ -22,5 +23,11 @@ JSON ESLint config example:
 
 ### Rules
 
- - [Define Tag After Class Definition](./docs/rules/define-tag-after-class-definition.md)
- - [No DOM Traversal in Connectedcallback](./docs/rules/no-dom-traversal-in-connectedcallback.md)
+- [Define Tag After Class Definition](./docs/rules/define-tag-after-class-definition.md)
+- [Expose Class on Global](./docs/rules/expose-class-on-global.md)
+- [File Name Matches Element](./docs/rules/file-name-matches-element.md)
+- [No Constructor](./docs/rules/no-constructor.md)
+- [No Customized Built in Elements](./docs/rules/no-customized-built-in-elements.md)
+- [No DOM Traversal in Connectedcallback](./docs/rules/no-dom-traversal-in-connectedcallback.md)
+- [One Element Per File](./docs/rules/one-element-per-file.md)
+- [Valid Tag Name](./docs/rules/valid-tag-name.md)
