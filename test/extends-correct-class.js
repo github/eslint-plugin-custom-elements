@@ -50,7 +50,8 @@ ruleTester.run('extends-correct-class', rule, {
       code: 'customElements.define("foo-bar", class extends HTMLDivElement {}, { extends: "p" })',
       errors: [
         {
-          message: "Custom Element extends HTMLDivElement but the definition includes {extends:'p'}. Either the Custom Element must extend from HTMLParagraphElement, or the definition must include {extends:'div'}.",
+          message:
+            "Custom Element extends HTMLDivElement but the definition includes {extends:'p'}. Either the Custom Element must extend from HTMLParagraphElement, or the definition must include {extends:'div'}.",
           type: 'CallExpression'
         }
       ]
