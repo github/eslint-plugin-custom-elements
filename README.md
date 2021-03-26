@@ -28,5 +28,6 @@ JSON ESLint config example:
 - [File Name Matches Element](./docs/rules/file-name-matches-element.md)
 - [No Constructor](./docs/rules/no-constructor.md)
 - [No Customized Built in Elements](./docs/rules/no-customized-built-in-elements.md)
+- [No DOM Traversal in Connectedcallback](./docs/rules/no-dom-traversal-in-connectedcallback.md)
 - [One Element Per File](./docs/rules/one-element-per-file.md)
 - [Valid Tag Name](./docs/rules/valid-tag-name.md)
