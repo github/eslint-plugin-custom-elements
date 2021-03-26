@@ -1,42 +1,49 @@
 # Tag Name Matches Class
 
-Custom Element can be registered as a any valid HTML tag.
+A Custom Element class can be named with any [valid identifier name](https://mothereff.in/js-variables). Valid identifiers are not one-to-one mapped with custom element tag names. For example, idiomatic JavaScript would use camel case identifiers while custom element tag names must be kebab case.
+
+There are no constraints that force you to name the custom element tag name similarly to the custom element class name. This lack of constraint can be problematic when debugging, traversing a codebase, or looking for tag names that bear no similarity to the class names.
+
+By mapping custom element tag names to the class names, we can ensure a consistent and more navigable codebase.
 
 ## Rule Details
 
-This rule enforces that the tag name that a Custom Element is registered under is a kebab-case of the elements class name.
+This rule enforces that a custom element tag name matches its class name while respecting the kebab/camel casing idioms.
 
 👎 Examples of **incorrect** code for this rule:
 
 ```js
-customElements.define('bar-foo', FooBarElement)
+customElements.define('my-element', FooBar)
 ```
 
 👍 Examples of **correct** code for this rule:
 
 ```js
-customElements.define('foo-bar', FooBarElement)
+customElements.define('foo-bar', FooBar)
 ```
 
 ### Options
 
-- `suffix` can allow omission of a suffix from a tag name. Typed as a string or a list of strings, case sensitive and defaults to `['Element']`.
+- `suffix` can allow omission of a suffix from a tag name. Typed as a string or a list of strings & is case sensitive.
+- `prefix` can allow omission of a prefix from a tag name. Typed as a string or a list of strings & is case sensitive.
 
 👍 Examples of **correct** code for different `suffix` options:
 
-- `["error": {"suffix": []}]`
+- `["error"]`
   - `customElements.define('foo-bar', FooBar)`
 
 - `["error": {"suffix": 'Component'}]`
+  - `customElements.define('foo-bar', FooBar)`
   - `customElements.define('foo-bar', FooBarComponent)`
 
 - `["error": {"suffix": ['Element', 'Component']}]`
-  - `customElements.define('foo-bar', FooBarComponent)`
+  - `customElements.define('foo-bar', FooBar)`
   - `customElements.define('foo-bar', FooBarElement)`
+  - `customElements.define('foo-bar', FooBarComponent)`
 
 ## When Not To Use It
 
-If you intentionally want to name your custom elements differently to their defined tag names.
+If you intentionally want to name your custom elements differently from their defined tag names, then you can disable this rule.
 
 ## Version
 
