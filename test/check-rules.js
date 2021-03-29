@@ -4,6 +4,9 @@ const fs = require('fs')
 const assert = require('assert')
 const path = require('path')
 
+const RuleTester = require('eslint').RuleTester
+const ruleTester = new RuleTester({env: {es2020: true}, parserOptions: {sourceType: 'module'}})
+
 function rulesFromDir(dir) {
   try {
     return fs.readdirSync(`./${dir}`).map(f => path.basename(f, path.extname(f)))
@@ -100,6 +103,58 @@ describe('documentation', () => {
         '## Version'
       ].filter(Boolean)
       assert.deepStrictEqual(headings, desiredHeadings, 'Expected doc to have correct headings')
+    })
+
+    it(`has working examples in ${doc}.md`, () => {
+      if (doc !== 'no-exports-with-element') return
+      const rules = {valid: [], invalid: []}
+      const contents = fs.readFileSync(`./docs/rules/${doc}.md`, 'utf-8').split('\n')
+      let state
+      let inCodeBlock = false
+      let codeLines = []
+      let filename = null
+      for (const line of contents) {
+        if (line === '👎 Examples of **incorrect** code for this rule:') {
+          state = 'invalid'
+          continue
+        } else if (line === '👍 Examples of **correct** code for this rule:') {
+          state = 'valid'
+          continue
+        } else if (!inCodeBlock && line.startsWith('```')) {
+          codeLines = []
+          inCodeBlock = true
+          continue
+        } else if (filename && inCodeBlock && line.match(/\s*\/\/ .*\.[jt]s$/)) {
+          const code = codeLines.join('\n')
+          if (state === 'valid') {
+            rules.valid.push({code})
+          } else if (state === 'invalid') {
+            rules.invalid.push({code, errors: 1, filename})
+          }
+          inCodeBlock = false
+          continue
+        } else if (inCodeBlock && line.match(/\s*\/\/ .*\.[jt]s$/)) {
+          filename = line.replace('// ', '')
+        } else if (inCodeBlock && line.startsWith('```')) {
+          const code = codeLines.join('\n')
+          if (state === 'valid') {
+            rules.valid.push({code})
+          } else if (state === 'invalid') {
+            rules.invalid.push({code, errors: 1, filename})
+          }
+          inCodeBlock = false
+          continue
+        } else if (line.startsWith('#')) {
+          state = null
+          continue
+        }
+        if (inCodeBlock && line.trim() !== '') {
+          codeLines.push(line)
+        }
+      }
+
+      const rule = require(`../lib/rules/${doc}`)
+      ruleTester.run(doc, rule, rules)
     })
   }
 })
