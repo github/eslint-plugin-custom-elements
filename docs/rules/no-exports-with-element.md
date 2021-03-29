@@ -10,16 +10,13 @@ This rule disallows exports (other than the element class) in a file with a Cust
 
 ```js
 // foo-bar-element.js
-class FooBarElement extends HTMLElement {
+export class FooBarElement extends HTMLElement {
   // ...
 }
 
-function myHelper() {
+export function myHelper() {
   // ...
 }
-
-export FooBarElement
-export myHelper
 ```
 
 👍 Examples of **correct** code for this rule:
@@ -27,18 +24,14 @@ export myHelper
 ```js
 // foo-bar-element.js
 import {myHelper} from './helpers.js'
-class FooBarElement extends HTMLElement {
+export class FooBarElement extends HTMLElement {
   // ...
 }
-
-export FooBarElement
 
 // helpers.js
-function myHelper() {
+export function myHelper() {
   // ...
 }
-
-export myHelper
 ```
 
 ## When Not To Use It
