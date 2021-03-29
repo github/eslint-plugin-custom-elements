@@ -12,38 +12,40 @@ This rule disallows using DOM traversal APIs within the `connectedCallback`.
 
 ```js
 class FooBarElement extends HTMLElement {
-
   connectedCallback() {
-    this.querySelector('button')?.disabled = true
+    const button = this.querySelector('button')
+    if (button) {
+      button.disabled = true
+    }
   }
-
 }
 ```
-
 
 👍 Examples of **correct** code for this rule:
 
 ```js
 class FooBarElement extends HTMLElement {
-
   connectedCallback() {
     new MutationObserver(() => {
-      this.querySelector('button')?.disabled = true
+      const button = this.querySelector('button')
+      if (button) {
+        button.disabled = true
+      }
     }).observe(this)
   }
-
 }
 ```
 
 ```js
 class FooBarElement extends HTMLElement {
-
   connectedCallback() {
     this.addEventListener('update', () => {
-      this.querySelector('button')?.disabled = true
+      const button = this.querySelector('button')
+      if (button) {
+        button.disabled = true
+      }
     })
   }
-
 }
 ```
 
