@@ -96,6 +96,16 @@ export const Wobble = Wibble`,
           type: 'ClassExpression'
         }
       ]
+    },
+    {
+      code: 'export class FooBarElement extends HTMLElement { }\nexport function myHelper() { }',
+      errors: [
+        {
+          message: 'Do not export non-custom elements along custom elements',
+          line: 2,
+          type: 'FunctionDeclaration'
+        }
+      ]
     }
   ]
 })
