@@ -14,23 +14,23 @@ This rule enforces that any call to `customElements.define` must be given the co
 👎 Examples of **incorrect** code for this rule:
 
 ```js
-customElements.define('foo-bar', class extends HTMLParagraphElement)
+customElements.define('foo-bar', class extends HTMLParagraphElement {})
 // ^ `foo-bar` extends HTMLParagraphElement but define call did not extend `p`
 ```
 
 ```js
-customElements.define('foo-bar', class extends HTMLElement, { extends: 'p' })
+customElements.define('foo-bar', class extends HTMLElement {}, {extends: 'p'})
 // ^ `foo-bar` extends `p` but it extends HTMLElement
 ```
 
 👍 Examples of **correct** code for this rule:
 
 ```js
-customElements.define('foo-bar', class extends HTMLElement)
+customElements.define('foo-bar', class extends HTMLElement {})
 ```
 
 ```js
-customElements.define('foo-bar', class extends HTMLParagraphElement, { extends: 'p' })
+customElements.define('foo-bar', class extends HTMLParagraphElement {}, {extends: 'p'})
 ```
 
 ## When Not To Use It
