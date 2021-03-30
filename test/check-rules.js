@@ -106,7 +106,6 @@ describe('documentation', () => {
     })
 
     it(`has working examples in ${doc}.md`, () => {
-      if (doc !== 'no-exports-with-element') return
       const rules = {valid: [], invalid: []}
       const contents = fs.readFileSync(`./docs/rules/${doc}.md`, 'utf-8').split('\n')
       let state
