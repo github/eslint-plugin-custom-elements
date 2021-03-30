@@ -23,6 +23,32 @@ function makeTitle(name) {
     .replace(/\b(Dom)\b/g, x => x.toUpperCase())
 }
 
+function* extractCodeblocks(lines) {
+  let inCodeBlock = false
+  let codeLines = []
+  let startLine = 0
+  let endLine = 0
+  let lang = ''
+  for (const i in lines) {
+    const line = lines[i]
+    if (!inCodeBlock && line.startsWith('```')) {
+      lang = line.slice(3)
+      startLine = i
+      codeLines = []
+      inCodeBlock = true
+      continue
+    } else if (inCodeBlock && line.startsWith('```')) {
+      endLine = i
+      yield {code: codeLines, startLine, endLine, lang}
+      inCodeBlock = false
+      continue
+    }
+    if (inCodeBlock) {
+      codeLines.push(line)
+    }
+  }
+}
+
 describe('smoke tests', () => {
   it('has file for each exported rule and rule for each exported file', () => {
     assert.deepStrictEqual(
@@ -141,29 +167,3 @@ describe('documentation', () => {
     })
   }
 })
-
-function* extractCodeblocks(lines) {
-  let inCodeBlock = false
-  let codeLines = []
-  let startLine = 0
-  let endLine = 0
-  let lang = ''
-  for (const i in lines) {
-    const line = lines[i]
-    if (!inCodeBlock && line.startsWith('```')) {
-      lang = line.slice(3)
-      startLine = i
-      codeLines = []
-      inCodeBlock = true
-      continue
-    } else if (inCodeBlock && line.startsWith('```')) {
-      endLine = i
-      yield {code: codeLines, startLine, endLine, lang}
-      inCodeBlock = false
-      continue
-    }
-    if (inCodeBlock) {
-      codeLines.push(line)
-    }
-  }
-}
