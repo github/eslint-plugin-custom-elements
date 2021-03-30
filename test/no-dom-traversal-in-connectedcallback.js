@@ -8,7 +8,34 @@ ruleTester.run('no-dom-traversal-in-connectedcallback', rule, {
     {code: 'document.querySelector("hello")'},
     {code: 'class FooBar { connectedCallback() { this.querySelector("hello") } }'},
     {code: 'class FooBar extends HTMLElement { update() { this.querySelector("hello") } }'},
-    {code: 'document.children'}
+    {code: 'document.children'},
+    {
+      code: `
+class FooBarElement extends HTMLElement {
+  connectedCallback() {
+    this.addEventListener("update", () => {
+      const button = this.querySelector('button')
+      if (button) {
+        button.disabled = true
+      }
+    })
+  }
+}
+`
+    },
+    {
+      code: `
+class FooBarElement extends HTMLElement {
+  connectedCallback() {
+    new MutationObserver(() => {
+      const button = this.querySelector('button')
+      if (button) {
+        button.disabled = true
+      }
+    }).observe(this)
+  }
+}`
+    }
   ],
   invalid: [
     {
