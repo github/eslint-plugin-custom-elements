@@ -17,7 +17,7 @@ Also, there are many edge cases that can cause complications inside the construc
 
 ## Rule Details
 
-This rule disallows using the `constructor` in a HTMLElement class.
+This rule disallows using the `constructor` in an HTMLElement class.
 
 👎 Examples of **incorrect** code for this rule:
 
