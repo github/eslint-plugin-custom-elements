@@ -107,48 +107,25 @@ describe('documentation', () => {
 
     it(`has working examples in ${doc}.md`, () => {
       const rules = {valid: [], invalid: []}
-      const contents = fs.readFileSync(`./docs/rules/${doc}.md`, 'utf-8').split('\n')
-      let state
-      let inCodeBlock = false
-      let codeLines = []
-      let filename = null
-      for (const line of contents) {
-        if (line === '👎 Examples of **incorrect** code for this rule:') {
-          state = 'invalid'
-          continue
-        } else if (line === '👍 Examples of **correct** code for this rule:') {
-          state = 'valid'
-          continue
-        } else if (!inCodeBlock && line.startsWith('```')) {
-          codeLines = []
-          inCodeBlock = true
-          continue
-        } else if (filename && inCodeBlock && line.match(/\s*\/\/ .*\.[jt]s$/)) {
-          const code = codeLines.join('\n')
-          if (state === 'valid') {
-            rules.valid.push({code})
-          } else if (state === 'invalid') {
-            rules.invalid.push({code, errors: 1, filename})
-          }
-          inCodeBlock = false
-          continue
-        } else if (inCodeBlock && line.match(/\s*\/\/ .*\.[jt]s$/)) {
-          filename = line.replace('// ', '')
-        } else if (inCodeBlock && line.startsWith('```')) {
-          const code = codeLines.join('\n')
-          if (state === 'valid') {
-            rules.valid.push({code})
-          } else if (state === 'invalid') {
-            rules.invalid.push({code, errors: 1, filename})
-          }
-          inCodeBlock = false
-          continue
-        } else if (line.startsWith('#')) {
-          state = null
+      const lines = fs.readFileSync(`./docs/rules/${doc}.md`, 'utf-8').split('\n')
+
+      for (const {code, startLine} of extractCodeblocks(lines)) {
+        const validIndex = lines.lastIndexOf('👍 Examples of **correct** code for this rule:', startLine)
+        const invalidIndex = lines.lastIndexOf('👎 Examples of **incorrect** code for this rule:', startLine)
+
+        if (validIndex === invalidIndex) {
           continue
         }
-        if (inCodeBlock && line.trim() !== '') {
-          codeLines.push(line)
+
+        let filename = ''
+        if (code[0].match(/\s*\/\/ .*\.[jt]s$/)) {
+          filename = code[0].replace('// ', '').trim()
+        }
+
+        if (validIndex > invalidIndex) {
+          rules.valid.push({code: code.join('\n')})
+        } else {
+          rules.invalid.push({code: code.join('\n'), errors: 1, filename})
         }
       }
 
@@ -157,3 +134,29 @@ describe('documentation', () => {
     })
   }
 })
+
+function* extractCodeblocks(lines) {
+  let inCodeBlock = false
+  let codeLines = []
+  let startLine = 0
+  let endLine = 0
+  let lang = ''
+  for (const i in lines) {
+    const line = lines[i]
+    if (!inCodeBlock && line.startsWith('```')) {
+      lang = line.slice(3)
+      startLine = i
+      codeLines = []
+      inCodeBlock = true
+      continue
+    } else if (inCodeBlock && line.startsWith('```')) {
+      endLine = i
+      yield {code: codeLines, startLine, endLine, lang}
+      inCodeBlock = false
+      continue
+    }
+    if (inCodeBlock) {
+      codeLines.push(line)
+    }
+  }
+}
