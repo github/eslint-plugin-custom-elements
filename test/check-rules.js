@@ -4,6 +4,9 @@ const fs = require('fs')
 const assert = require('assert')
 const path = require('path')
 
+const RuleTester = require('eslint').RuleTester
+const ruleTester = new RuleTester({env: {es2020: true}, parserOptions: {sourceType: 'module'}})
+
 function rulesFromDir(dir) {
   try {
     return fs.readdirSync(`./${dir}`).map(f => path.basename(f, path.extname(f)))
@@ -18,6 +21,32 @@ function makeTitle(name) {
     .replace(/\w\S*/g, x => x.charAt(0).toUpperCase() + x.substr(1))
     .replace(/\b(The|An?|And|To|In|On|With)\b/g, x => x.toLowerCase())
     .replace(/\b(Dom)\b/g, x => x.toUpperCase())
+}
+
+function* extractCodeblocks(lines) {
+  let inCodeBlock = false
+  let codeLines = []
+  let startLine = 0
+  let endLine = 0
+  let lang = ''
+  for (const i in lines) {
+    const line = lines[i]
+    if (!inCodeBlock && line.startsWith('```')) {
+      lang = line.slice(3)
+      startLine = i
+      codeLines = []
+      inCodeBlock = true
+      continue
+    } else if (inCodeBlock && line.startsWith('```')) {
+      endLine = i
+      yield {code: codeLines, startLine, endLine, lang}
+      inCodeBlock = false
+      continue
+    }
+    if (inCodeBlock) {
+      codeLines.push(line)
+    }
+  }
 }
 
 describe('smoke tests', () => {
@@ -100,6 +129,41 @@ describe('documentation', () => {
         '## Version'
       ].filter(Boolean)
       assert.deepStrictEqual(headings, desiredHeadings, 'Expected doc to have correct headings')
+    })
+
+    it(`has working examples in ${doc}.md`, () => {
+      const rules = {valid: [], invalid: []}
+      const lines = fs.readFileSync(`./docs/rules/${doc}.md`, 'utf-8').split('\n')
+
+      for (const {code, startLine} of extractCodeblocks(lines)) {
+        const validIndex = lines.lastIndexOf('👍 Examples of **correct** code for this rule:', startLine)
+        const invalidIndex = lines.lastIndexOf('👎 Examples of **incorrect** code for this rule:', startLine)
+
+        if (validIndex === invalidIndex) {
+          continue
+        }
+
+        let filename = ''
+        if (code[0].match(/\s*\/\/ .*\.[jt]s$/)) {
+          filename = code[0].replace('// ', '').trim()
+        }
+
+        if (validIndex > invalidIndex) {
+          rules.valid.push({code: code.join('\n')})
+        } else {
+          rules.invalid.push({code: code.join('\n'), errors: 1, filename})
+        }
+      }
+
+      const rule = require(`../lib/rules/${doc}`)
+      ruleTester.run(doc, rule, rules)
+    })
+
+    it(`has javascript examples in ${doc}.md`, () => {
+      const lines = fs.readFileSync(`./docs/rules/${doc}.md`, 'utf-8').split('\n')
+      for (const {lang, startLine} of extractCodeblocks(lines)) {
+        assert.equal(lang, 'js', `Expected codeblock on line ${startLine} to equal "js"`)
+      }
     })
   }
 })

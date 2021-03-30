@@ -17,7 +17,9 @@ class SecondElement extends HTMLElement {}
 ```js
 // first-element.ts
 class FirstElement extends HTMLElement {}
+```
 
+```js
 // second-element.ts
 class SecondElement extends HTMLElement {}
 ```

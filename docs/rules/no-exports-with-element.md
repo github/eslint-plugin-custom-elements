@@ -27,7 +27,9 @@ import {myHelper} from './helpers.js'
 export class FooBarElement extends HTMLElement {
   // ...
 }
+```
 
+```js
 // helpers.js
 export function myHelper() {
   // ...
