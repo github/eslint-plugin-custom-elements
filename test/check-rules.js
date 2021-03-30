@@ -132,6 +132,13 @@ describe('documentation', () => {
       const rule = require(`../lib/rules/${doc}`)
       ruleTester.run(doc, rule, rules)
     })
+
+    it(`has javascript examples in ${doc}.md`, () => {
+      const lines = fs.readFileSync(`./docs/rules/${doc}.md`, 'utf-8').split('\n')
+      for (const {lang, startLine} of extractCodeblocks(lines)) {
+        assert.equal(lang, 'js', `Expected codeblock on line ${startLine} to equal "js"`)
+      }
+    })
   }
 })
 
