@@ -15,6 +15,7 @@ class FooBarElement extends HTMLElement {
 
 // No assignment to `window.FooBarElement`
 ```
+
 ```js
 class FooBarElement extends HTMLElement {
   // ...

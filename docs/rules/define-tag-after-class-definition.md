@@ -30,9 +30,12 @@ class FooBarElement extends HTMLElement {
 
 ```js
 // This prevents `FooBarElement` from being in the lexical scope
-customElements.define('foo-bar', class FooBarElement extends HTMLElement {
-  // ...
-})
+customElements.define(
+  'foo-bar',
+  class FooBarElement extends HTMLElement {
+    // ...
+  }
+)
 ```
 
 👍 Examples of **correct** code for this rule:

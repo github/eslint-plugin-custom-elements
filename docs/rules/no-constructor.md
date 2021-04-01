@@ -6,14 +6,14 @@ For Custom Elements, the `constructor` method can be a little unwieldy to use; i
 
 Many expectations from an element are not true during the `constructor` call. For example you cannot:
 
- - read any attributes on the element (`.attributes` will always be an empty `NamedNodeMap`).
- - access any child elements (`.children` will always be an empty `HTMLCollection`).
- - Fire events that bubble. As the node is not connected it cannot bubble.
+- read any attributes on the element (`.attributes` will always be an empty `NamedNodeMap`).
+- access any child elements (`.children` will always be an empty `HTMLCollection`).
+- Fire events that bubble. As the node is not connected it cannot bubble.
 
 Also, there are many edge cases that can cause complications inside the constructor, for example:
 
- - Creating child elements and appending them will cause _their_ connected callbacks to fire, but their parent (the current element) will be disconnected from the DOM.
- - Changing attributes will cause `attributeChangedCallback` to fire, which may expect to be connected.
+- Creating child elements and appending them will cause _their_ connected callbacks to fire, but their parent (the current element) will be disconnected from the DOM.
+- Changing attributes will cause `attributeChangedCallback` to fire, which may expect to be connected.
 
 ## Rule Details
 
