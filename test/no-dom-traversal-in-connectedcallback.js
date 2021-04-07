@@ -8,6 +8,7 @@ ruleTester.run('no-dom-traversal-in-connectedcallback', rule, {
     {code: 'document.querySelector("hello")'},
     {code: 'class FooBar { connectedCallback() { this.querySelector("hello") } }'},
     {code: 'class FooBar extends HTMLElement { update() { this.querySelector("hello") } }'},
+    {code: 'class FooBar extends HTMLElement { connectedCallback() { this.innerHTML = "<h1>foo</h1>" } }'},
     {code: 'document.children'},
     {
       code: `
@@ -35,6 +36,9 @@ class FooBarElement extends HTMLElement {
     }).observe(this)
   }
 }`
+    },
+    {
+      code: 'class FooBar extends HTMLElement { connectedCallback() { this.children = [1] } }'
     }
   ],
   invalid: [
@@ -67,15 +71,6 @@ class FooBarElement extends HTMLElement {
     },
     {
       code: 'class FooBar extends HTMLElement { connectedCallback() { this.children } }',
-      errors: [
-        {
-          message: 'DOM traversal using .children inside connectedCallback() is error prone.',
-          type: 'MemberExpression'
-        }
-      ]
-    },
-    {
-      code: 'class FooBar extends HTMLElement { connectedCallback() { this.children = [1] } }',
       errors: [
         {
           message: 'DOM traversal using .children inside connectedCallback() is error prone.',
