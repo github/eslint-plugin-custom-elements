@@ -8,6 +8,7 @@ ruleTester.run('no-dom-traversal-in-connectedcallback', rule, {
     {code: 'document.querySelector("hello")'},
     {code: 'class FooBar { connectedCallback() { this.querySelector("hello") } }'},
     {code: 'class FooBar extends HTMLElement { update() { this.querySelector("hello") } }'},
+    {code: 'class FooBar extends HTMLElement { connectedCallback() { this.innerHTML = "<h1>foo</h1>" } }'},
     {code: 'document.children'},
     {
       code: `
@@ -35,6 +36,9 @@ class FooBarElement extends HTMLElement {
     }).observe(this)
   }
 }`
+    },
+    {
+      code: 'class FooBar extends HTMLElement { connectedCallback() { this.children = [1] } }'
     }
   ],
   invalid: [
@@ -75,10 +79,28 @@ class FooBarElement extends HTMLElement {
       ]
     },
     {
-      code: 'class FooBar extends HTMLElement { connectedCallback() { this.children = [1] } }',
+      code: 'class FooBar extends HTMLElement { connectedCallback() { console.log(this.innerHTML) } }',
       errors: [
         {
-          message: 'DOM traversal using .children inside connectedCallback() is error prone.',
+          message: 'DOM traversal using .innerHTML inside connectedCallback() is error prone.',
+          type: 'MemberExpression'
+        }
+      ]
+    },
+    {
+      code: 'class FooBar extends HTMLElement { connectedCallback() { console.log(this.innerText) } }',
+      errors: [
+        {
+          message: 'DOM traversal using .innerText inside connectedCallback() is error prone.',
+          type: 'MemberExpression'
+        }
+      ]
+    },
+    {
+      code: 'class FooBar extends HTMLElement { connectedCallback() { console.log(this.textContent) } }',
+      errors: [
+        {
+          message: 'DOM traversal using .textContent inside connectedCallback() is error prone.',
           type: 'MemberExpression'
         }
       ]
