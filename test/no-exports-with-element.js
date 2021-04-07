@@ -10,6 +10,7 @@ ruleTester.run('no-exports-with-element', rule, {
     {code: 'class FooBarElement extends HTMLElement { }\nexport {FooBarElement}'},
     {code: 'class FooBarElement extends HTMLElement { }\nexport default FooBarElement'},
     {code: 'export class a extends HTMLElement { }\nexport class b extends HTMLElement { }'},
+    {code: 'export function baz() { const foo = "bar" }'},
     {
       code:
         'export class a extends Map { }\nexport default class extends Map { }\nexport const b = class extends Map {}'
