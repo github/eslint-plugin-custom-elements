@@ -82,6 +82,33 @@ class FooBarElement extends HTMLElement {
           type: 'MemberExpression'
         }
       ]
+    },
+    {
+      code: 'class FooBar extends HTMLElement { connectedCallback() { console.log(this.innerHTML) } }',
+      errors: [
+        {
+          message: 'DOM traversal using .innerHTML inside connectedCallback() is error prone.',
+          type: 'MemberExpression'
+        }
+      ]
+    },
+    {
+      code: 'class FooBar extends HTMLElement { connectedCallback() { console.log(this.innerText) } }',
+      errors: [
+        {
+          message: 'DOM traversal using .innerText inside connectedCallback() is error prone.',
+          type: 'MemberExpression'
+        }
+      ]
+    },
+    {
+      code: 'class FooBar extends HTMLElement { connectedCallback() { console.log(this.textContent) } }',
+      errors: [
+        {
+          message: 'DOM traversal using .textContent inside connectedCallback() is error prone.',
+          type: 'MemberExpression'
+        }
+      ]
     }
   ]
 })
