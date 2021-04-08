@@ -16,7 +16,7 @@ JSON ESLint config example:
 
 ```json
 {
-  "plugins": ["github"],
+  "plugins": ["custom-elements"],
   "extends": ["plugin:custom-elements/recommended"]
 }
 ```
