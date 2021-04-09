@@ -20,6 +20,9 @@ ruleTester.run('no-exports-with-element', rule, {
         'class FooBarElement extends HTMLElement { }\nclass BarFooElement extends HTMLElement { }\nexport {FooBarElement}\nexport {BarFooElement}'
     },
     {
+      code: 'export class FooBarElement extends HTMLElement { connectedCallback() { window.a = 1; } }'
+    },
+    {
       code: `class FooBarElement extends HTMLElement { }
 export {FooBarElement}
 class BarFooElement extends HTMLElement { }
