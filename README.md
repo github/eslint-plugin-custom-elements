@@ -32,6 +32,7 @@ JSON ESLint config example:
 - [No DOM Traversal in Connectedcallback](./docs/rules/no-dom-traversal-in-connectedcallback.md)
 - [No Exports with Element](./docs/rules/no-exports-with-element.md)
 - [No Method Prefixed with on](./docs/rules/no-method-prefixed-with-on.md)
+- [No Unchecked Define](./docs/rules/no-unchecked-define.md)
 - [One Element Per File](./docs/rules/one-element-per-file.md)
 - [Tag Name Matches Class](./docs/rules/tag-name-matches-class.md)
 - [Valid Tag Name](./docs/rules/valid-tag-name.md)
