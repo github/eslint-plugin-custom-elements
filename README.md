@@ -36,3 +36,14 @@ JSON ESLint config example:
 - [One Element Per File](./docs/rules/one-element-per-file.md)
 - [Tag Name Matches Class](./docs/rules/tag-name-matches-class.md)
 - [Valid Tag Name](./docs/rules/valid-tag-name.md)
+
+## Development
+
+```
+npm install
+npm test
+```
+
+## License
+
+Distributed under the MIT license. See LICENSE for details.
