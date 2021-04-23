@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-custom-elements",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A collection of eslint rules for custom-elements",
   "homepage": "https://github.com/github/eslint-plugin-custom-elements#readme",
   "bugs": {
