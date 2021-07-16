@@ -14,13 +14,12 @@ $ npm install --save-dev eslint eslint-plugin-custom-elements
 
 ## Setup
 
-Add `custom-elements` to your list of plugins in your ESLint config, and `plugin:custom-elements/recommended` to the `extends` array.
+Add `custom-elements` to your list of plugins in your ESLint config, and enable the rules you want or just add `plugin:custom-elements/recommended` to the `extends` array.
 
 JSON ESLint config example:
 
 ```json
 {
-  "plugins": ["custom-elements"],
   "extends": ["plugin:custom-elements/recommended"]
 }
 ```
