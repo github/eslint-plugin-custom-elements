@@ -19,6 +19,15 @@ ruleTester.run('valid-tag-name', rule, {
   ],
   invalid: [
     {
+      code: 'const tagName = "foo-bar"; customElements.define(tagName)',
+      errors: [
+        {
+          message: 'Expected custom element name to be a string literal',
+          type: 'Identifier'
+        }
+      ]
+    },
+    {
       code: 'customElements.define("foo")',
       errors: [
         {
