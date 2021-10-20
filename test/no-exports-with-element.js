@@ -12,12 +12,10 @@ ruleTester.run('no-exports-with-element', rule, {
     {code: 'export class a extends HTMLElement { }\nexport class b extends HTMLElement { }'},
     {code: 'export function baz() { const foo = "bar" }'},
     {
-      code:
-        'export class a extends Map { }\nexport default class extends Map { }\nexport const b = class extends Map {}'
+      code: 'export class a extends Map { }\nexport default class extends Map { }\nexport const b = class extends Map {}'
     },
     {
-      code:
-        'class FooBarElement extends HTMLElement { }\nclass BarFooElement extends HTMLElement { }\nexport {FooBarElement}\nexport {BarFooElement}'
+      code: 'class FooBarElement extends HTMLElement { }\nclass BarFooElement extends HTMLElement { }\nexport {FooBarElement}\nexport {BarFooElement}'
     },
     {
       code: 'export class FooBarElement extends HTMLElement { connectedCallback() { window.a = 1; } }'
@@ -81,8 +79,7 @@ export const Wobble = Wibble`,
       ]
     },
     {
-      code:
-        'export class FooBarElement extends HTMLElement {}\n export class a extends Map { }\nexport default class extends Map { }\nexport const b = class extends Map {}',
+      code: 'export class FooBarElement extends HTMLElement {}\n export class a extends Map { }\nexport default class extends Map { }\nexport const b = class extends Map {}',
       errors: [
         {
           message: 'Do not export non-custom elements along custom elements',

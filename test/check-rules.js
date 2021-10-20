@@ -1,5 +1,5 @@
 /* globals describe, it*/
-const config = require('../lib/index.js')
+const config = require('../lib/index')
 const fs = require('fs')
 const assert = require('assert')
 const path = require('path')
@@ -155,6 +155,7 @@ describe('documentation', () => {
         }
       }
 
+      // eslint-disable-next-line import/no-dynamic-require
       const rule = require(`../lib/rules/${doc}`)
       ruleTester.run(doc, rule, rules)
     })
