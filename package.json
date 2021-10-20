@@ -23,9 +23,6 @@
     "lint": "eslint . --ignore-path .gitignore"
   },
   "prettier": "@github/prettier-config",
-  "dependencies": {
-    "eslint-rule-documentation": ">=1.0.0"
-  },
   "devDependencies": {
     "@github/prettier-config": "0.0.4",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
