@@ -21,8 +21,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Preparation
         uses: ./.github/actions/setup
-      - name: Perform last-minute checks
-        run: npm run check
       - name: Perform last-minute tests
         run: npm test
       - name: Configure Git
