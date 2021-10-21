@@ -1,0 +1,43 @@
+name: Bump version
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Semver type of new version (major / minor / patch)'
+        required: true
+
+jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Check out the content (source branch).  Use a deploy key so that
+    # when we push changes, it will trigger the release workflow
+    # run that runs on: tag. (Using the GitHub token would
+    # not run the workflow to prevent infinite recursion.)
+    - name: Check out source
+      uses: actions/checkout@v2
+      with:
+        ssh-key: ${{ secrets.DEPLOY_KEY }}
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+        cache: 'npm'
+
+    - name: Install npm packages
+      run: npm ci
+
+    - name: Setup Git
+      run: |
+        git config user.name 'Actions Auto Build'
+        git config user.email 'actions@github.com'
+    - name: bump version
+      run: npm version ${{ github.event.inputs.version }}
+
+    - name: Push latest version
+      run: git push origin main --follow-tags
