@@ -5,24 +5,19 @@ const ruleTester = new RuleTester({env: {es2020: true}})
 ruleTester.run('no-unchecked-define', rule, {
   valid: [
     {
-      code:
-        'if (!window.customElements.get("foo-bar")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } '
+      code: 'if (!window.customElements.get("foo-bar")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } '
     },
     {
-      code:
-        'if (!customElements.get("foo-bar")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } '
+      code: 'if (!customElements.get("foo-bar")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } '
     },
     {
-      code:
-        'if (customElements.get("foo-bar") == null) { window.customElements.define("foo-bar", class extends HTMLElement {}) } '
+      code: 'if (customElements.get("foo-bar") == null) { window.customElements.define("foo-bar", class extends HTMLElement {}) } '
     },
     {
-      code:
-        'if (customElements.get("foo-bar") == undefined) { window.customElements.define("foo-bar", class extends HTMLElement {}) } '
+      code: 'if (customElements.get("foo-bar") == undefined) { window.customElements.define("foo-bar", class extends HTMLElement {}) } '
     },
     {
-      code:
-        'if (!!!customElements.get("foo-bar")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } '
+      code: 'if (!!!customElements.get("foo-bar")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } '
     }
   ],
   invalid: [
@@ -37,8 +32,7 @@ ruleTester.run('no-unchecked-define', rule, {
       ]
     },
     {
-      code:
-        'if (customElements.get("foo-bar")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } ',
+      code: 'if (customElements.get("foo-bar")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } ',
       errors: [
         {
           message:
@@ -48,8 +42,7 @@ ruleTester.run('no-unchecked-define', rule, {
       ]
     },
     {
-      code:
-        'if (!customElements.get("bar-foo")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } ',
+      code: 'if (!customElements.get("bar-foo")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } ',
       errors: [
         {
           message:
@@ -69,8 +62,7 @@ ruleTester.run('no-unchecked-define', rule, {
       ]
     },
     {
-      code:
-        'if (!!customElements.get("foo-bar")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } ',
+      code: 'if (!!customElements.get("foo-bar")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } ',
       errors: [
         {
           message:
