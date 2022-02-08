@@ -7,7 +7,15 @@ ruleTester.run('extends-correct-class', rule, {
   valid: [
     {code: 'customElements.define("foo-bar", class extends HTMLElement {})'},
     {code: 'customElements.define("foo-bar", class extends HTMLDivElement {}, { extends: "div" })'},
-    {code: 'customElements.define("foo-bar", class extends HTMLOListElement {}, { extends: `ol` })'}
+    {code: 'customElements.define("foo-bar", class extends HTMLOListElement {}, { extends: `ol` })'},
+    {
+      code: 'customElements.define("foo-bar", class extends HTMLGitHubElement {})',
+      options: [{allowedSuperNames: ['HTMLGitHubElement']}]
+    },
+    {
+      code: 'customElements.define("foo-bar", class extends HTMLElement {})',
+      options: [{allowedSuperNames: ['HTMLGitHubElement']}]
+    }
   ],
   invalid: [
     {
@@ -52,6 +60,27 @@ ruleTester.run('extends-correct-class', rule, {
         {
           message:
             "Custom Element extends HTMLDivElement but the definition includes {extends:'p'}. Either the Custom Element must extend from HTMLParagraphElement, or the definition must include {extends:'div'}.",
+          type: 'CallExpression'
+        }
+      ]
+    },
+    {
+      code: 'customElements.define("foo-bar", class extends HTMLGitHubElement {}, { extends: `ol` })',
+      options: [{allowedSuperNames: ['HTMLGitHubElement']}],
+      errors: [
+        {
+          message: 'HTMLGitHubElement !== HTMLOListElement',
+          type: 'CallExpression'
+        }
+      ]
+    },
+    {
+      code: 'customElements.define("foo-bar", class extends HTMLGitHubThreeElement {})',
+      options: [{allowedSuperNames: ['HTMLGitHubOneElement', 'HTMLGitHubTwoElement']}],
+      errors: [
+        {
+          message:
+            'Custom Element must extend {HTMLGitHubOneElement, HTMLGitHubTwoElement, HTMLElement} not HTMLGitHubThreeElement',
           type: 'CallExpression'
         }
       ]
