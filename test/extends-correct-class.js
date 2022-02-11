@@ -80,7 +80,7 @@ ruleTester.run('extends-correct-class', rule, {
       errors: [
         {
           message:
-            'Custom Element must extend {HTMLGitHubOneElement, HTMLGitHubTwoElement, HTMLElement} not HTMLGitHubThreeElement',
+            'Custom Element must extend HTMLGitHubOneElement, HTMLGitHubTwoElement, or HTMLElement not HTMLGitHubThreeElement',
           type: 'CallExpression'
         }
       ]
