@@ -7,7 +7,8 @@ ruleTester.run('no-customized-built-in-elements', rule, {
     {code: 'class SomeMap extends Map { }'},
     {code: 'class FooBarElement { }'},
     {code: 'class FooBarElement extends HTMLElement { }'},
-    {code: 'const FooBarElement = class extends HTMLElement { }'}
+    {code: 'const FooBarElement = class extends HTMLElement { }'},
+    {code: 'const FooBarElement = class extends HTMLRandomNotBuiltInElement { }'}
   ],
   invalid: [
     {
