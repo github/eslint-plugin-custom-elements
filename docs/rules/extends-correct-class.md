@@ -9,7 +9,7 @@ The [specification defines the requirements of the superclass for each of these 
 
 ## Rule Details
 
-This rule enforces that any call to `customElements.define` must be given the correct superclass. If the `extends` option is passed, then the given classes superclass must match the named element. If the `extends` option is not passed, then the given classes superclass must be `HTMLElement`.
+This rule enforces that any call to `customElements.define` must be given the correct superclass. If the `extends` option is passed, then the given classes superclass must match the named element. If the `extends` option is not passed, then the given classes superclass must be `HTMLElement` or specified by the [`allowedSuperNames` ESLint option](#allowedSuperNames).
 
 👎 Examples of **incorrect** code for this rule:
 
@@ -32,6 +32,10 @@ customElements.define('foo-bar', class extends HTMLElement {})
 ```js
 customElements.define('foo-bar', class extends HTMLParagraphElement {}, {extends: 'p'})
 ```
+
+### Options
+
+- `allowedSuperNames` is an array option (default: []) can specify what classes an Autonomous custom element _may_ extend. It is assumed that by using this option, any allowed super name _must_ extend `HTMLElement` in its prototype chain.
 
 ## When Not To Use It
 
