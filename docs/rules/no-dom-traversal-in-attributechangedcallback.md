@@ -99,4 +99,4 @@ If you are comfortable with the edge cases of DOM traversal directly in the `att
 
 ## Version
 
-This rule was introduced in 0.0.1
+This rule was introduced in 0.0.5
