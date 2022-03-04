@@ -1,4 +1,4 @@
-# No DOM Traversal in AttributeChangedCallback
+# No DOM Traversal in Attributechangedcallback
 
 The intent of the `attributeChangedCallback` is to initialise state based on attribute values, and to observe and alter state when those values change. Traversing the DOM during the `attributeChangedCallback` phase is error-prone, because:
 
