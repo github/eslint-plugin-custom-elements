@@ -8,6 +8,9 @@ ruleTester.run('no-unchecked-define', rule, {
       code: 'if (!window.customElements.get("foo-bar")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } '
     },
     {
+      code: 'if (window.customElements && !window.customElements.get("foo-bar")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } '
+    },
+    {
       code: 'if (!customElements.get("foo-bar")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } '
     },
     {
