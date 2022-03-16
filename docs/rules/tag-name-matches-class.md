@@ -33,29 +33,29 @@ customElements.define('foo-bar', FooBar)
 
   - `customElements.define('foo-bar', FooBar)`
 
-- `["error": {"suffix": 'Element'}]`
+- `["error", {"suffix": 'Element'}]`
 
   - `customElements.define('foo-bar', FooBar)`
   - `customElements.define('foo-bar', FooBarElement)`
 
-- `["error": {"suffix": ['Element', 'Component']}]`
+- `["error", {"suffix": ['Element', 'Component']}]`
 
   - `customElements.define('foo-bar', FooBar)`
   - `customElements.define('foo-bar', FooBarElement)`
   - `customElements.define('foo-bar', FooBarComponent)`
 
-- `["error": {"prefix": 'Iron'}]`
+- `["error", {"prefix": 'Iron'}]`
 
   - `customElements.define('foo-bar', FooBar)`
   - `customElements.define('foo-bar', IronFooBar)`
 
-- `["error": {"prefix": ['Iron', 'Copper']}]`
+- `["error", {"prefix": ['Iron', 'Copper']}]`
 
   - `customElements.define('foo-bar', FooBar)`
   - `customElements.define('foo-bar', IronFooBar)`
   - `customElements.define('foo-bar', CopperFooBar)`
 
-- `["error": {"prefix": ['Iron', 'Copper'], suffix: ['Element', 'Component']}]`
+- `["error", {"prefix": ['Iron', 'Copper'], suffix: ['Element', 'Component']}]`
   - `customElements.define('foo-bar', FooBar)`
   - `customElements.define('foo-bar', IronFooBar)`
   - `customElements.define('foo-bar', IronFooBarElement)`
