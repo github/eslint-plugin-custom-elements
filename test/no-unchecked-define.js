@@ -45,6 +45,16 @@ ruleTester.run('no-unchecked-define', rule, {
       ]
     },
     {
+      code: 'if (window.customElements && customElements.get("foo-bar")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } ',
+      errors: [
+        {
+          message:
+            'Make sure to wrap customElements.define calls in checks to see if the element has already been defined',
+          type: 'CallExpression'
+        }
+      ]
+    },
+    {
       code: 'if (!customElements.get("bar-foo")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } ',
       errors: [
         {
