@@ -8,6 +8,9 @@ ruleTester.run('no-unchecked-define', rule, {
       code: 'if (!window.customElements.get("foo-bar")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } '
     },
     {
+      code: 'if (window.customElements && !window.customElements.get("foo-bar")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } '
+    },
+    {
       code: 'if (!customElements.get("foo-bar")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } '
     },
     {
@@ -33,6 +36,16 @@ ruleTester.run('no-unchecked-define', rule, {
     },
     {
       code: 'if (customElements.get("foo-bar")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } ',
+      errors: [
+        {
+          message:
+            'Make sure to wrap customElements.define calls in checks to see if the element has already been defined',
+          type: 'CallExpression'
+        }
+      ]
+    },
+    {
+      code: 'if (window.customElements && customElements.get("foo-bar")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } ',
       errors: [
         {
           message:
