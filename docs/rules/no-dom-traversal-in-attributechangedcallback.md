@@ -2,9 +2,8 @@
 
 The intent of the `attributeChangedCallback` is to initialise state based on attribute values, and to observe and alter state when those values change. Traversing the DOM during the `attributeChangedCallback` phase is error-prone, because:
 
-  - it can fire before `connectedCallback`, meaning any initialisation inside of `connectedCallback` has not yet occurred.
-  - it can fire before `this.isConnected` is `true`, meaning the node has been created but is not yet appended to the DOM. For example `this.ownerDocument` or `this.parent` will be null, and `this.querySelector()` will return `null` for any value.
-
+- it can fire before `connectedCallback`, meaning any initialisation inside of `connectedCallback` has not yet occurred.
+- it can fire before `this.isConnected` is `true`, meaning the node has been created but is not yet appended to the DOM. For example `this.ownerDocument` or `this.parent` will be null, and `this.querySelector()` will return `null` for any value.
 
 To give a concrete example of this, there is a common pattern when constructing DOM in JS to create the element, set its attributes and append to the DOM, in that order. In code this might look like:
 
@@ -26,9 +25,9 @@ document.body.innerHTML = '<foo-bar baz="bing"></foo-bar>'
 
 Guarding against `null` properties, or returning early for `isConnected === false` is not good enough because there is high risk that attribute changes won't be properly propagated and state can fall out of sync. Guarding against these means adding duplicate code in other lifecycle callbacks such as `connectedCallback` to ensure this state does not fall out of sync. It is instead preferable to move such DOM traversals away from `attributeChangedCallback`, using one of the following:
 
- - move traversals to `connectedCallback`
- - dispatch events from `attributeChangedCallback`, binding event listeners on the element itself within `connectedCallback`
- - defer DOM traversals to just-in-time lookup using methods or getters.
+- move traversals to `connectedCallback`
+- dispatch events from `attributeChangedCallback`, binding event listeners on the element itself within `connectedCallback`
+- defer DOM traversals to just-in-time lookup using methods or getters.
 
 All of these patterns still mean state initialisation should be done in the `connectedCallback`. Do not rely on `attributeChangedCallback` for state initialisation.
 
@@ -85,13 +84,12 @@ class FooBarElement extends HTMLElement {
     this.querySelector('span').textContent = this.getAttribute('data-text')
   }
   connectedCallback() {
-    // This needs to happen because `attributeChangedCallback` doesn't 
+    // This needs to happen because `attributeChangedCallback` doesn't
     // _always_ update.
     this.update()
   }
 }
 ```
-
 
 ## When Not To Use It
 
