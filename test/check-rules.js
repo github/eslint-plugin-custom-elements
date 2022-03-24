@@ -18,7 +18,7 @@ function rulesFromDir(dir) {
 function makeTitle(name) {
   return name
     .replace(/-/g, ' ')
-    .replace(/\w\S*/g, x => x.charAt(0).toUpperCase() + x.substr(1))
+    .replace(/\w\S*/g, x => x.charAt(0).toUpperCase() + x.slice(1))
     .replace(/\b(The|An?|And|To|In|On|With)\b/g, x => x.toLowerCase())
     .replace(/\b(Dom)\b/g, x => x.toUpperCase())
 }
