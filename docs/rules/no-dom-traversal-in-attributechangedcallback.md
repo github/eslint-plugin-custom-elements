@@ -25,7 +25,6 @@ document.body.innerHTML = '<foo-bar baz="bing"></foo-bar>'
 
 Guarding against `null` properties, or returning early for `isConnected === false` is not good enough because there is high risk that attribute changes won't be properly propagated and state can fall out of sync. Guarding against these means adding duplicate code in other lifecycle callbacks such as `connectedCallback` to ensure this state does not fall out of sync. It is instead preferable to move such DOM traversals away from `attributeChangedCallback`, using one of the following:
 
-- move traversals to `connectedCallback`
 - dispatch events from `attributeChangedCallback`, binding event listeners on the element itself within `connectedCallback`
 - defer DOM traversals to just-in-time lookup using methods or getters.
 
