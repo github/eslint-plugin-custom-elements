@@ -21,6 +21,15 @@ ruleTester.run('expose-class-on-global', rule, {
       ]
     },
     {
+      code: 'class FooBar extends CustomHTMLElement {}',
+      errors: [
+        {
+          message: 'Custom Element has not been exported onto `window`',
+          type: 'ClassDeclaration'
+        }
+      ]
+    },
+    {
       code: 'window.customElements.define("foo-bar", FooBar)\nclass FooBar extends HTMLElement {}',
       errors: [
         {
