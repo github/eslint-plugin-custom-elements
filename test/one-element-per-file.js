@@ -6,11 +6,11 @@ const ruleTester = new RuleTester({env: {es2020: true}})
 ruleTester.run('one-element-per-file', rule, {
   valid: [
     {
-      code: 'class FooBarElement extends HTMLElement {}'
+      code: 'class FooBarElement extends HTMLElement {}',
     },
     {
-      code: 'class SomeMap extends Map {}\nclass FooBarElement extends HTMLElement {}'
-    }
+      code: 'class SomeMap extends Map {}\nclass FooBarElement extends HTMLElement {}',
+    },
   ],
   invalid: [
     {
@@ -19,9 +19,9 @@ ruleTester.run('one-element-per-file', rule, {
         {
           message: 'Only one Custom Element should be specified per file',
           type: 'ClassDeclaration',
-          line: 2
-        }
-      ]
+          line: 2,
+        },
+      ],
     },
     {
       code: `
@@ -33,14 +33,14 @@ class BazFooElement extends HTMLElement {}
         {
           message: 'Only one Custom Element should be specified per file',
           type: 'ClassDeclaration',
-          line: 3
+          line: 3,
         },
         {
           message: 'Only one Custom Element should be specified per file',
           type: 'ClassDeclaration',
-          line: 4
-        }
-      ]
-    }
-  ]
+          line: 4,
+        },
+      ],
+    },
+  ],
 })

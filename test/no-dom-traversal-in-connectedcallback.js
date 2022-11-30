@@ -22,7 +22,7 @@ class FooBarElement extends HTMLElement {
     })
   }
 }
-`
+`,
     },
     {
       code: `
@@ -35,11 +35,11 @@ class FooBarElement extends HTMLElement {
       }
     }).observe(this)
   }
-}`
+}`,
     },
     {
-      code: 'class FooBar extends HTMLElement { connectedCallback() { this.children = [1] } }'
-    }
+      code: 'class FooBar extends HTMLElement { connectedCallback() { this.children = [1] } }',
+    },
   ],
   invalid: [
     {
@@ -47,63 +47,63 @@ class FooBarElement extends HTMLElement {
       errors: [
         {
           message: 'DOM traversal using .querySelector inside connectedCallback() is error prone.',
-          type: 'CallExpression'
-        }
-      ]
+          type: 'CallExpression',
+        },
+      ],
     },
     {
       code: 'class FooBar extends HTMLElement { connectedCallback() { document.querySelector("hello") } }',
       errors: [
         {
           message: 'DOM traversal using .querySelector inside connectedCallback() is error prone.',
-          type: 'CallExpression'
-        }
-      ]
+          type: 'CallExpression',
+        },
+      ],
     },
     {
       code: 'class FooBar extends HTMLElement { connectedCallback() { this.foo.querySelector("hello") } }',
       errors: [
         {
           message: 'DOM traversal using .querySelector inside connectedCallback() is error prone.',
-          type: 'CallExpression'
-        }
-      ]
+          type: 'CallExpression',
+        },
+      ],
     },
     {
       code: 'class FooBar extends HTMLElement { connectedCallback() { this.children } }',
       errors: [
         {
           message: 'DOM traversal using .children inside connectedCallback() is error prone.',
-          type: 'MemberExpression'
-        }
-      ]
+          type: 'MemberExpression',
+        },
+      ],
     },
     {
       code: 'class FooBar extends HTMLElement { connectedCallback() { console.log(this.innerHTML) } }',
       errors: [
         {
           message: 'DOM traversal using .innerHTML inside connectedCallback() is error prone.',
-          type: 'MemberExpression'
-        }
-      ]
+          type: 'MemberExpression',
+        },
+      ],
     },
     {
       code: 'class FooBar extends HTMLElement { connectedCallback() { console.log(this.innerText) } }',
       errors: [
         {
           message: 'DOM traversal using .innerText inside connectedCallback() is error prone.',
-          type: 'MemberExpression'
-        }
-      ]
+          type: 'MemberExpression',
+        },
+      ],
     },
     {
       code: 'class FooBar extends HTMLElement { connectedCallback() { console.log(this.textContent) } }',
       errors: [
         {
           message: 'DOM traversal using .textContent inside connectedCallback() is error prone.',
-          type: 'MemberExpression'
-        }
-      ]
-    }
-  ]
+          type: 'MemberExpression',
+        },
+      ],
+    },
+  ],
 })

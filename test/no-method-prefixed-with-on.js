@@ -10,7 +10,7 @@ ruleTester.run('no-method-prefixed-with-on', rule, {
     {code: 'class FooBar extends HTMLElement { fooOnClick() {  } }'},
     {code: 'class FooBar extends HTMLElement { fooonclick() {  } }'},
     {code: 'class FooBar extends HTMLElement { handleOnClick() {  } }'},
-    {code: 'class FooBar extends HTMLElement { handleonclick() {  } }'}
+    {code: 'class FooBar extends HTMLElement { handleonclick() {  } }'},
   ],
   invalid: [
     {
@@ -18,45 +18,45 @@ ruleTester.run('no-method-prefixed-with-on', rule, {
       errors: [
         {
           message: 'Avoid method names prefixed with `on`',
-          type: 'MethodDefinition'
-        }
-      ]
+          type: 'MethodDefinition',
+        },
+      ],
     },
     {
       code: 'class FooBar extends HTMLElement { ontoggle() { } }',
       errors: [
         {
           message: 'Avoid method names prefixed with `on`',
-          type: 'MethodDefinition'
-        }
-      ]
+          type: 'MethodDefinition',
+        },
+      ],
     },
     {
       code: 'class FooBar extends HTMLElement { onload() { } }',
       errors: [
         {
           message: 'Avoid method names prefixed with `on`',
-          type: 'MethodDefinition'
-        }
-      ]
+          type: 'MethodDefinition',
+        },
+      ],
     },
     {
       code: 'class FooBar extends HTMLElement { onClick() { } }',
       errors: [
         {
           message: 'Avoid method names prefixed with `on`',
-          type: 'MethodDefinition'
-        }
-      ]
+          type: 'MethodDefinition',
+        },
+      ],
     },
     {
       code: 'class FooBar extends HTMLElement { oncease() { } }',
       errors: [
         {
           message: 'Avoid method names prefixed with `on`',
-          type: 'MethodDefinition'
-        }
-      ]
-    }
-  ]
+          type: 'MethodDefinition',
+        },
+      ],
+    },
+  ],
 })

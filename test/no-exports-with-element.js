@@ -12,13 +12,13 @@ ruleTester.run('no-exports-with-element', rule, {
     {code: 'export class a extends HTMLElement { }\nexport class b extends HTMLElement { }'},
     {code: 'export function baz() { const foo = "bar" }'},
     {
-      code: 'export class a extends Map { }\nexport default class extends Map { }\nexport const b = class extends Map {}'
+      code: 'export class a extends Map { }\nexport default class extends Map { }\nexport const b = class extends Map {}',
     },
     {
-      code: 'class FooBarElement extends HTMLElement { }\nclass BarFooElement extends HTMLElement { }\nexport {FooBarElement}\nexport {BarFooElement}'
+      code: 'class FooBarElement extends HTMLElement { }\nclass BarFooElement extends HTMLElement { }\nexport {FooBarElement}\nexport {BarFooElement}',
     },
     {
-      code: 'export class FooBarElement extends HTMLElement { connectedCallback() { window.a = 1; } }'
+      code: 'export class FooBarElement extends HTMLElement { connectedCallback() { window.a = 1; } }',
     },
     {
       code: `class FooBarElement extends HTMLElement { }
@@ -27,8 +27,8 @@ class BarFooElement extends HTMLElement { }
 export default BarFooElement
 export class BazElement extends HTMLElement { }
 export const QuxElement = class extends HTMLElement { }
-export const QuuxElement = FooBarElement`
-    }
+export const QuuxElement = FooBarElement`,
+    },
   ],
   invalid: [
     {
@@ -44,29 +44,29 @@ export const Wobble = Wibble`,
         {
           message: 'Do not export non-custom elements along custom elements',
           line: 3,
-          type: 'Identifier'
+          type: 'Identifier',
         },
         {
           message: 'Do not export non-custom elements along custom elements',
           line: 5,
-          type: 'Identifier'
+          type: 'Identifier',
         },
         {
           message: 'Do not export non-custom elements along custom elements',
           line: 6,
-          type: 'ClassDeclaration'
+          type: 'ClassDeclaration',
         },
         {
           message: 'Do not export non-custom elements along custom elements',
           line: 7,
-          type: 'ClassExpression'
+          type: 'ClassExpression',
         },
         {
           message: 'Do not export non-custom elements along custom elements',
           line: 8,
-          type: 'Identifier'
-        }
-      ]
+          type: 'Identifier',
+        },
+      ],
     },
     {
       code: 'export class a extends HTMLElement { }\nexport class b extends HTMLElement { }\nexport const c = 1',
@@ -74,9 +74,9 @@ export const Wobble = Wibble`,
         {
           message: 'Do not export non-custom elements along custom elements',
           line: 3,
-          type: 'Literal'
-        }
-      ]
+          type: 'Literal',
+        },
+      ],
     },
     {
       code: 'export class FooBarElement extends HTMLElement {}\n export class a extends Map { }\nexport default class extends Map { }\nexport const b = class extends Map {}',
@@ -84,19 +84,19 @@ export const Wobble = Wibble`,
         {
           message: 'Do not export non-custom elements along custom elements',
           line: 2,
-          type: 'ClassDeclaration'
+          type: 'ClassDeclaration',
         },
         {
           message: 'Do not export non-custom elements along custom elements',
           line: 3,
-          type: 'ClassDeclaration'
+          type: 'ClassDeclaration',
         },
         {
           message: 'Do not export non-custom elements along custom elements',
           line: 4,
-          type: 'ClassExpression'
-        }
-      ]
+          type: 'ClassExpression',
+        },
+      ],
     },
     {
       code: 'export class FooBarElement extends HTMLElement { }\nexport function myHelper() { }',
@@ -104,9 +104,9 @@ export const Wobble = Wibble`,
         {
           message: 'Do not export non-custom elements along custom elements',
           line: 2,
-          type: 'FunctionDeclaration'
-        }
-      ]
-    }
-  ]
+          type: 'FunctionDeclaration',
+        },
+      ],
+    },
+  ],
 })
