@@ -4,7 +4,7 @@ It's possible to export multiple functions and classes in a JavaScript file. In 
 
 ## Rule Details
 
-This rule disallows exports (other than the element class) in a file with a Custom Element.
+This rule disallows exports (other than the element class and event subclasses) in a file with a Custom Element.
 
 👎 Examples of **incorrect** code for this rule:
 
@@ -24,6 +24,18 @@ export function myHelper() {
 ```js
 // foo-bar-element.js
 import {myHelper} from './helpers.js'
+export class FooBarElement extends HTMLElement {
+  // ...
+}
+```
+
+```js
+// foo-bar-element.js
+import {myHelper} from './helpers.js'
+export class FooReadyEvent extends Event {
+  // ... 
+}
+
 export class FooBarElement extends HTMLElement {
   // ...
 }
