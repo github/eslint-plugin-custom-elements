@@ -10,7 +10,7 @@ ruleTester.run('define-tag-after-class-definition', rule, {
     {code: 'class FooBar extends HTMLElement {}\nwindow.customElements.define("foo-bar", FooBar)'},
     {code: 'window.FooBar = class FooBar extends HTMLElement {}\ncustomElements.define("foo-bar", window.FooBar)'},
     {code: 'class FooBar extends HTMLDivElement {}\nwindow.customElements.define("foo-bar", FooBar, {is:"div"})'},
-    {code: 'const FooBar = class FooBar extends HTMLElement {}\ncustomElements.define("foo-bar", FooBar)'}
+    {code: 'const FooBar = class FooBar extends HTMLElement {}\ncustomElements.define("foo-bar", FooBar)'},
   ],
   invalid: [
     {
@@ -18,54 +18,54 @@ ruleTester.run('define-tag-after-class-definition', rule, {
       errors: [
         {
           message: 'Custom Element has not been registered with `define`',
-          type: 'ClassDeclaration'
-        }
-      ]
+          type: 'ClassDeclaration',
+        },
+      ],
     },
     {
       code: 'window.customElements.define("foo-bar", FooBar)\nclass FooBar extends HTMLElement {}',
       errors: [
         {
           message: 'Custom Element has not been registered with `define`',
-          type: 'ClassDeclaration'
-        }
-      ]
+          type: 'ClassDeclaration',
+        },
+      ],
     },
     {
       code: 'window.customElements.define("foo-bar", class extends HTMLElement {})',
       errors: [
         {
           message: 'Inlining Custom Element definition prevents it being used in the file',
-          type: 'ClassExpression'
-        }
-      ]
+          type: 'ClassExpression',
+        },
+      ],
     },
     {
       code: 'const FooBar = class FooBar extends HTMLElement {}',
       errors: [
         {
           message: 'Custom Element has not been registered with `define`',
-          type: 'ClassExpression'
-        }
-      ]
+          type: 'ClassExpression',
+        },
+      ],
     },
     {
       code: 'window.FooBar = class FooBar extends HTMLElement {}',
       errors: [
         {
           message: 'Custom Element has not been registered with `define`',
-          type: 'ClassExpression'
-        }
-      ]
+          type: 'ClassExpression',
+        },
+      ],
     },
     {
       code: 'class FooBar extends HTMLDivElement {}',
       errors: [
         {
           message: 'Custom Element has not been registered with `define`',
-          type: 'ClassDeclaration'
-        }
-      ]
-    }
-  ]
+          type: 'ClassDeclaration',
+        },
+      ],
+    },
+  ],
 })

@@ -11,8 +11,8 @@ ruleTester.run('no-dom-traversal-in-attributeChangedCallback', rule, {
     {code: 'class FooBar extends HTMLElement { attributeChangedCallback() { this.innerHTML = "<h1>foo</h1>" } }'},
     {code: 'document.children'},
     {
-      code: 'class FooBar extends HTMLElement { attributeChangedCallback() { this.children = [1] } }'
-    }
+      code: 'class FooBar extends HTMLElement { attributeChangedCallback() { this.children = [1] } }',
+    },
   ],
   invalid: [
     {
@@ -20,63 +20,63 @@ ruleTester.run('no-dom-traversal-in-attributeChangedCallback', rule, {
       errors: [
         {
           message: 'DOM traversal using .querySelector inside attributeChangedCallback() is error prone.',
-          type: 'CallExpression'
-        }
-      ]
+          type: 'CallExpression',
+        },
+      ],
     },
     {
       code: 'class FooBar extends HTMLElement { attributeChangedCallback() { document.querySelector("hello") } }',
       errors: [
         {
           message: 'DOM traversal using .querySelector inside attributeChangedCallback() is error prone.',
-          type: 'CallExpression'
-        }
-      ]
+          type: 'CallExpression',
+        },
+      ],
     },
     {
       code: 'class FooBar extends HTMLElement { attributeChangedCallback() { this.foo.querySelector("hello") } }',
       errors: [
         {
           message: 'DOM traversal using .querySelector inside attributeChangedCallback() is error prone.',
-          type: 'CallExpression'
-        }
-      ]
+          type: 'CallExpression',
+        },
+      ],
     },
     {
       code: 'class FooBar extends HTMLElement { attributeChangedCallback() { this.children } }',
       errors: [
         {
           message: 'DOM traversal using .children inside attributeChangedCallback() is error prone.',
-          type: 'MemberExpression'
-        }
-      ]
+          type: 'MemberExpression',
+        },
+      ],
     },
     {
       code: 'class FooBar extends HTMLElement { attributeChangedCallback() { console.log(this.innerHTML) } }',
       errors: [
         {
           message: 'DOM traversal using .innerHTML inside attributeChangedCallback() is error prone.',
-          type: 'MemberExpression'
-        }
-      ]
+          type: 'MemberExpression',
+        },
+      ],
     },
     {
       code: 'class FooBar extends HTMLElement { attributeChangedCallback() { console.log(this.innerText) } }',
       errors: [
         {
           message: 'DOM traversal using .innerText inside attributeChangedCallback() is error prone.',
-          type: 'MemberExpression'
-        }
-      ]
+          type: 'MemberExpression',
+        },
+      ],
     },
     {
       code: 'class FooBar extends HTMLElement { attributeChangedCallback() { console.log(this.textContent) } }',
       errors: [
         {
           message: 'DOM traversal using .textContent inside attributeChangedCallback() is error prone.',
-          type: 'MemberExpression'
-        }
-      ]
+          type: 'MemberExpression',
+        },
+      ],
     },
     {
       code: `
@@ -94,9 +94,9 @@ class FooBarElement extends HTMLElement {
       errors: [
         {
           message: 'DOM traversal using .querySelector inside attributeChangedCallback() is error prone.',
-          type: 'CallExpression'
-        }
-      ]
+          type: 'CallExpression',
+        },
+      ],
     },
     {
       code: `
@@ -113,9 +113,9 @@ class FooBarElement extends HTMLElement {
       errors: [
         {
           message: 'DOM traversal using .querySelector inside attributeChangedCallback() is error prone.',
-          type: 'CallExpression'
-        }
-      ]
-    }
-  ]
+          type: 'CallExpression',
+        },
+      ],
+    },
+  ],
 })

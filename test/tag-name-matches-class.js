@@ -27,32 +27,32 @@ ruleTester.run('tag-name-matches-class', rule, {
     {code: `customElements.define('foo-bar', class {})`},
     {
       code: `customElements.define('foo-bar', FooBar)`,
-      options: [{prefix: ['Iron', 'Copper'], suffix: ['Element', 'Component']}]
+      options: [{prefix: ['Iron', 'Copper'], suffix: ['Element', 'Component']}],
     },
     {
       code: `customElements.define('foo-bar', IronFooBar)`,
-      options: [{prefix: ['Iron', 'Copper'], suffix: ['Element', 'Component']}]
+      options: [{prefix: ['Iron', 'Copper'], suffix: ['Element', 'Component']}],
     },
     {
       code: `customElements.define('foo-bar', IronFooBarElement)`,
-      options: [{prefix: ['Iron', 'Copper'], suffix: ['Element', 'Component']}]
+      options: [{prefix: ['Iron', 'Copper'], suffix: ['Element', 'Component']}],
     },
     {
       code: `customElements.define('foo-bar', IronFooBarComponent)`,
-      options: [{prefix: ['Iron', 'Copper'], suffix: ['Element', 'Component']}]
+      options: [{prefix: ['Iron', 'Copper'], suffix: ['Element', 'Component']}],
     },
     {
       code: `customElements.define('foo-bar', CopperFooBar)`,
-      options: [{prefix: ['Iron', 'Copper'], suffix: ['Element', 'Component']}]
+      options: [{prefix: ['Iron', 'Copper'], suffix: ['Element', 'Component']}],
     },
     {
       code: `customElements.define('foo-bar', CopperFooBarElement)`,
-      options: [{prefix: ['Iron', 'Copper'], suffix: ['Element', 'Component']}]
+      options: [{prefix: ['Iron', 'Copper'], suffix: ['Element', 'Component']}],
     },
     {
       code: `customElements.define('foo-bar', CopperFooBarComponent)`,
-      options: [{prefix: ['Iron', 'Copper'], suffix: ['Element', 'Component']}]
-    }
+      options: [{prefix: ['Iron', 'Copper'], suffix: ['Element', 'Component']}],
+    },
   ],
   invalid: [
     {
@@ -60,18 +60,18 @@ ruleTester.run('tag-name-matches-class', rule, {
       errors: [
         {
           message: 'Custom Element tag name should have been "foo-bar-element" but was "foo-bar"',
-          type: 'Literal'
-        }
-      ]
+          type: 'Literal',
+        },
+      ],
     },
     {
       code: "customElements.define('foo-bar-element', FooBar)",
       errors: [
         {
           message: 'Custom Element tag name should have been "foo-bar" but was "foo-bar-element"',
-          type: 'Literal'
-        }
-      ]
+          type: 'Literal',
+        },
+      ],
     },
     {
       code: "customElements.define('foo-bar', FooBarElement)",
@@ -79,9 +79,9 @@ ruleTester.run('tag-name-matches-class', rule, {
       errors: [
         {
           message: 'Custom Element tag name should have been "foo-bar-element" but was "foo-bar"',
-          type: 'Literal'
-        }
-      ]
+          type: 'Literal',
+        },
+      ],
     },
     {
       code: "customElements.define('foo-bar', FooBarBaz)",
@@ -89,9 +89,9 @@ ruleTester.run('tag-name-matches-class', rule, {
       errors: [
         {
           message: 'Custom Element tag name should have been "foo-bar-baz" but was "foo-bar"',
-          type: 'Literal'
-        }
-      ]
+          type: 'Literal',
+        },
+      ],
     },
     {
       code: `customElements.define('foo-bar', CopperFooBar)`,
@@ -99,9 +99,9 @@ ruleTester.run('tag-name-matches-class', rule, {
       errors: [
         {
           message: 'Custom Element tag name should have been "copper-foo-bar" but was "foo-bar"',
-          type: 'Literal'
-        }
-      ]
+          type: 'Literal',
+        },
+      ],
     },
     {
       code: `customElements.define('foo-bar', CopperFooBarComponent)`,
@@ -109,9 +109,9 @@ ruleTester.run('tag-name-matches-class', rule, {
       errors: [
         {
           message: 'Custom Element tag name should have been "copper-foo-bar-component" but was "foo-bar"',
-          type: 'Literal'
-        }
-      ]
+          type: 'Literal',
+        },
+      ],
     },
     {
       code: `customElements.define('bar-foo', CopperFooBarComponent)`,
@@ -119,9 +119,9 @@ ruleTester.run('tag-name-matches-class', rule, {
       errors: [
         {
           message: 'Custom Element tag name should have been "foo-bar" but was "bar-foo"',
-          type: 'Literal'
-        }
-      ]
+          type: 'Literal',
+        },
+      ],
     },
     {
       code: `customElements.define('bar-foo', FooBarCopper)`,
@@ -129,27 +129,27 @@ ruleTester.run('tag-name-matches-class', rule, {
       errors: [
         {
           message: 'Custom Element tag name should have been "foo-bar-copper" but was "bar-foo"',
-          type: 'Literal'
-        }
-      ]
+          type: 'Literal',
+        },
+      ],
     },
     {
       code: `customElements.define('foo-bar', class BarFoo extends HTMLElement {})`,
       errors: [
         {
           message: 'Custom Element tag name should have been "bar-foo" but was "foo-bar"',
-          type: 'Literal'
-        }
-      ]
+          type: 'Literal',
+        },
+      ],
     },
     {
       code: `customElements.define('foo-bar', class BarFoo {})`,
       errors: [
         {
           message: 'Custom Element tag name should have been "bar-foo" but was "foo-bar"',
-          type: 'Literal'
-        }
-      ]
-    }
-  ]
+          type: 'Literal',
+        },
+      ],
+    },
+  ],
 })

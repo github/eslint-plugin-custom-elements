@@ -126,7 +126,7 @@ describe('documentation', () => {
         '👍 Examples of **correct** code for this rule:',
         config.rules?.[doc]?.schema?.length ? '### Options' : '',
         '## When Not To Use It',
-        '## Version'
+        '## Version',
       ].filter(Boolean)
       assert.deepStrictEqual(headings, desiredHeadings, 'Expected doc to have correct headings')
     })
