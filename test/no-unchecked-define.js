@@ -22,6 +22,12 @@ ruleTester.run('no-unchecked-define', rule, {
     {
       code: 'if (!!!customElements.get("foo-bar")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } ',
     },
+    {
+      code: 'try { window.customElements.define("foo-bar", class extends HTMLElement {}) } catch {}',
+    },
+    {
+      code: 'try { window.customElements.define("foo-bar", class extends HTMLElement {}) } catch (e) {}',
+    },
   ],
   invalid: [
     {
@@ -76,6 +82,26 @@ ruleTester.run('no-unchecked-define', rule, {
     },
     {
       code: 'if (!!customElements.get("foo-bar")) { window.customElements.define("foo-bar", class extends HTMLElement {}) } ',
+      errors: [
+        {
+          message:
+            'Make sure to wrap customElements.define calls in checks to see if the element has already been defined',
+          type: 'CallExpression',
+        },
+      ],
+    },
+    {
+      code: 'try { } catch { customElements.define("foo-bar", class extends HTMLElement {}) }',
+      errors: [
+        {
+          message:
+            'Make sure to wrap customElements.define calls in checks to see if the element has already been defined',
+          type: 'CallExpression',
+        },
+      ],
+    },
+    {
+      code: 'try { } catch (e) { customElements.define("foo-bar", class extends HTMLElement {}) }',
       errors: [
         {
           message:
