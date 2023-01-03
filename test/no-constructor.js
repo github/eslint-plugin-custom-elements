@@ -6,7 +6,7 @@ ruleTester.run('no-constructor', rule, {
   valid: [
     {code: 'class SomeMap extends Map { constructor() {} }'},
     {code: 'class FooBarElement { constructor() {} }'},
-    {code: 'class FooBarElement extends HTMLElement { connectedCallback() {} }'}
+    {code: 'class FooBarElement extends HTMLElement { connectedCallback() {} }'},
   ],
   invalid: [
     {
@@ -14,9 +14,9 @@ ruleTester.run('no-constructor', rule, {
       errors: [
         {
           message: 'Avoid using constructors in Custom Elements',
-          type: 'MethodDefinition'
-        }
-      ]
-    }
-  ]
+          type: 'MethodDefinition',
+        },
+      ],
+    },
+  ],
 })

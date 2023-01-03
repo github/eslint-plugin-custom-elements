@@ -8,7 +8,7 @@ ruleTester.run('expose-class-on-global', rule, {
     {code: 'class SomeMap extends Map {}'},
     {code: 'class SomeMap extends Map {}\nwindow.Other = SomeMap'},
     {code: 'class FooBar extends HTMLElement {}\nwindow.FooBar = FooBar'},
-    {code: 'window.FooBar = class FooBar extends HTMLElement {}'}
+    {code: 'window.FooBar = class FooBar extends HTMLElement {}'},
   ],
   invalid: [
     {
@@ -16,45 +16,45 @@ ruleTester.run('expose-class-on-global', rule, {
       errors: [
         {
           message: 'Custom Element has not been exported onto `window`',
-          type: 'ClassDeclaration'
-        }
-      ]
+          type: 'ClassDeclaration',
+        },
+      ],
     },
     {
       code: 'window.customElements.define("foo-bar", FooBar)\nclass FooBar extends HTMLElement {}',
       errors: [
         {
           message: 'Custom Element has not been exported onto `window`',
-          type: 'ClassDeclaration'
-        }
-      ]
+          type: 'ClassDeclaration',
+        },
+      ],
     },
     {
       code: 'class FooBar extends HTMLElement {}\nwindow.Other = FooBar',
       errors: [
         {
           message: 'Custom Element global assignment must match class name',
-          type: 'Identifier'
-        }
-      ]
+          type: 'Identifier',
+        },
+      ],
     },
     {
       code: 'window.Other = class FooBar extends HTMLElement {}',
       errors: [
         {
           message: 'Custom Element global assignment must match class name',
-          type: 'Identifier'
-        }
-      ]
+          type: 'Identifier',
+        },
+      ],
     },
     {
       code: 'window.Other = class extends HTMLElement {}',
       errors: [
         {
           message: 'Custom Element global assignment must match class name',
-          type: 'Identifier'
-        }
-      ]
-    }
-  ]
+          type: 'Identifier',
+        },
+      ],
+    },
+  ],
 })

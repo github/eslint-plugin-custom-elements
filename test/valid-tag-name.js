@@ -15,7 +15,7 @@ ruleTester.run('valid-tag-name', rule, {
     {code: 'customElements.define("a-😶‍🌫️")'},
     {code: 'customElements.define("a-b-c-")', options: [{onlyAlphanum: true}]},
     {code: 'customElements.define("foo-bar")', options: [{disallowNamespaces: true}]},
-    {code: 'customElements.define("ng-bar")', options: [{disallowNamespaces: true, prefix: 'ng'}]}
+    {code: 'customElements.define("ng-bar")', options: [{disallowNamespaces: true, prefix: 'ng'}]},
   ],
   invalid: [
     {
@@ -23,142 +23,142 @@ ruleTester.run('valid-tag-name', rule, {
       errors: [
         {
           message: 'Expected custom element name to be a string literal',
-          type: 'Identifier'
-        }
-      ]
+          type: 'Identifier',
+        },
+      ],
     },
     {
       code: 'customElements.define("foo")',
       errors: [
         {
           message: 'foo is not a valid custom element name\nCustom Element names must contain at least one dash (-)',
-          type: 'Literal'
-        }
-      ]
+          type: 'Literal',
+        },
+      ],
     },
     {
       code: 'customElements.define("-foo-bar")',
       errors: [
         {
           message: '-foo-bar is not a valid custom element name\nCustom Element names must start with a letter',
-          type: 'Literal'
-        }
-      ]
+          type: 'Literal',
+        },
+      ],
     },
     {
       code: 'customElements.define("foo-BAR")',
       errors: [
         {
           message: 'foo-BAR is not a valid custom element name\nCustom Element names must not contain capital letters',
-          type: 'Literal'
-        }
-      ]
+          type: 'Literal',
+        },
+      ],
     },
     {
       code: 'customElements.define("<an-element>")',
       errors: [
         {
           message: '<an-element> is not a valid custom element name\nCustom Element names must start with a letter',
-          type: 'Literal'
-        }
-      ]
+          type: 'Literal',
+        },
+      ],
     },
     {
       code: 'customElements.define("911-emergency")',
       errors: [
         {
           message: '911-emergency is not a valid custom element name\nCustom Element names must start with a letter',
-          type: 'Literal'
-        }
-      ]
+          type: 'Literal',
+        },
+      ],
     },
     {
       code: 'customElements.define("notice-©")',
       errors: [
         {
           message: 'notice-© is not a valid custom element name',
-          type: 'Literal'
-        }
-      ]
+          type: 'Literal',
+        },
+      ],
     },
     {
       code: 'customElements.define("annotation-xml")',
       errors: [
         {
           message: 'Custom Elements cannot be given the reserved name "annotation-xml"',
-          type: 'Literal'
-        }
-      ]
+          type: 'Literal',
+        },
+      ],
     },
     {
       code: 'customElements.define("a-😶‍🌫️")',
       options: [
         {
-          onlyAlphanum: true
-        }
+          onlyAlphanum: true,
+        },
       ],
       errors: [
         {
           message: 'Non ASCII Custom Elements have been disallowed',
-          type: 'Literal'
-        }
-      ]
+          type: 'Literal',
+        },
+      ],
     },
     {
       code: 'customElements.define("a-😶‍🌫️")',
       options: [
         {
-          onlyAlphanum: true
-        }
+          onlyAlphanum: true,
+        },
       ],
       errors: [
         {
           message: 'Non ASCII Custom Elements have been disallowed',
-          type: 'Literal'
-        }
-      ]
+          type: 'Literal',
+        },
+      ],
     },
     {
       code: 'customElements.define("ng-element")',
       options: [
         {
-          disallowNamespaces: true
-        }
+          disallowNamespaces: true,
+        },
       ],
       errors: [
         {
           message: 'ng is a common namespace, and has been disallowed',
-          type: 'Literal'
-        }
-      ]
+          type: 'Literal',
+        },
+      ],
     },
     {
       code: 'customElements.define("abc-element")',
       options: [
         {
-          prefix: 'foo'
-        }
+          prefix: 'foo',
+        },
       ],
       errors: [
         {
           message: 'Custom Element name must begin with a prefix: foo',
-          type: 'Literal'
-        }
-      ]
+          type: 'Literal',
+        },
+      ],
     },
     {
       code: 'customElements.define("abc-component")',
       options: [
         {
-          suffix: 'element'
-        }
+          suffix: 'element',
+        },
       ],
       errors: [
         {
           message: 'Custom Element name must end with a suffix: element',
-          type: 'Literal'
-        }
-      ]
-    }
-  ]
+          type: 'Literal',
+        },
+      ],
+    },
+  ],
 })

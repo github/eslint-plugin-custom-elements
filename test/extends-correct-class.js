@@ -10,18 +10,18 @@ ruleTester.run('extends-correct-class', rule, {
     {code: 'customElements.define("foo-bar", class extends HTMLOListElement {}, { extends: `ol` })'},
     {
       code: 'customElements.define("foo-bar", class extends HTMLGitHubElement {})',
-      options: [{allowedSuperNames: ['HTMLGitHubElement']}]
+      options: [{allowedSuperNames: ['HTMLGitHubElement']}],
     },
     {
       code: 'customElements.define("foo-bar", class extends HTMLElement {})',
-      options: [{allowedSuperNames: ['HTMLGitHubElement']}]
+      options: [{allowedSuperNames: ['HTMLGitHubElement']}],
     },
     {
-      code: 'import Foo from "other";customElements.define("foo-bar", Foo)'
+      code: 'import Foo from "other";customElements.define("foo-bar", Foo)',
     },
     {
-      code: 'import {Foo} from "other";customElements.define("foo-bar", Foo)'
-    }
+      code: 'import {Foo} from "other";customElements.define("foo-bar", Foo)',
+    },
   ],
   invalid: [
     {
@@ -29,36 +29,36 @@ ruleTester.run('extends-correct-class', rule, {
       errors: [
         {
           message: 'Custom Element must extend HTMLElement',
-          type: 'ClassExpression'
-        }
-      ]
+          type: 'ClassExpression',
+        },
+      ],
     },
     {
       code: 'customElements.define("foo-bar", class {}, { extends: "p" })',
       errors: [
         {
           message: 'Custom Element must extend HTMLParagraphElement',
-          type: 'ClassExpression'
-        }
-      ]
+          type: 'ClassExpression',
+        },
+      ],
     },
     {
       code: 'customElements.define("foo-bar", class extends Map {})',
       errors: [
         {
           message: 'Custom Element must extend HTMLElement not Map',
-          type: 'CallExpression'
-        }
-      ]
+          type: 'CallExpression',
+        },
+      ],
     },
     {
       code: 'customElements.define("foo-bar", class extends HTMLParagraphElement {})',
       errors: [
         {
           message: "Custom Element must extend HTMLElement, or pass {extends:'p'} as a third argument to define",
-          type: 'CallExpression'
-        }
-      ]
+          type: 'CallExpression',
+        },
+      ],
     },
     {
       code: 'customElements.define("foo-bar", class extends HTMLDivElement {}, { extends: "p" })',
@@ -66,9 +66,9 @@ ruleTester.run('extends-correct-class', rule, {
         {
           message:
             "Custom Element extends HTMLDivElement but the definition includes {extends:'p'}. Either the Custom Element must extend from HTMLParagraphElement, or the definition must include {extends:'div'}.",
-          type: 'CallExpression'
-        }
-      ]
+          type: 'CallExpression',
+        },
+      ],
     },
     {
       code: 'customElements.define("foo-bar", class extends HTMLGitHubElement {}, { extends: `ol` })',
@@ -76,9 +76,9 @@ ruleTester.run('extends-correct-class', rule, {
       errors: [
         {
           message: 'HTMLGitHubElement !== HTMLOListElement',
-          type: 'CallExpression'
-        }
-      ]
+          type: 'CallExpression',
+        },
+      ],
     },
     {
       code: 'customElements.define("foo-bar", class extends HTMLGitHubThreeElement {})',
@@ -87,9 +87,9 @@ ruleTester.run('extends-correct-class', rule, {
         {
           message:
             'Custom Element must extend HTMLGitHubOneElement, HTMLGitHubTwoElement, or HTMLElement not HTMLGitHubThreeElement',
-          type: 'CallExpression'
-        }
-      ]
-    }
-  ]
+          type: 'CallExpression',
+        },
+      ],
+    },
+  ],
 })

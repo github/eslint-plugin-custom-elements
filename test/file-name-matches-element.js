@@ -44,13 +44,13 @@ ruleTester.run('file-name-matches-element', rule, {
     {
       code: 'class FooBarController extends HTMLElement {}',
       filename: 'components/foo/bar.ts',
-      options: [{transform: 'kebab', suffix: ['Controller'], matchDirectory: true}]
+      options: [{transform: 'kebab', suffix: ['Controller'], matchDirectory: true}],
     },
     {
       code: 'class FooBarController extends HTMLElement {}',
       filename: 'components/foo/foo-bar.ts',
-      options: [{transform: 'kebab', suffix: ['Controller']}]
-    }
+      options: [{transform: 'kebab', suffix: ['Controller']}],
+    },
   ],
   invalid: [
     {
@@ -59,9 +59,9 @@ ruleTester.run('file-name-matches-element', rule, {
       errors: [
         {
           message: 'File name should be "foo-bar-element" or "fooBarElement" but was "barfooelement"',
-          type: 'ClassDeclaration'
-        }
-      ]
+          type: 'ClassDeclaration',
+        },
+      ],
     },
     {
       code,
@@ -69,9 +69,9 @@ ruleTester.run('file-name-matches-element', rule, {
       errors: [
         {
           message: 'File name should be "foo-bar-element" or "fooBarElement" but was "foobarelement"',
-          type: 'ClassDeclaration'
-        }
-      ]
+          type: 'ClassDeclaration',
+        },
+      ],
     },
     {
       code,
@@ -80,9 +80,9 @@ ruleTester.run('file-name-matches-element', rule, {
       errors: [
         {
           message: 'File name should be "foo_bar_element" but was "foobarelement"',
-          type: 'ClassDeclaration'
-        }
-      ]
+          type: 'ClassDeclaration',
+        },
+      ],
     },
     {
       code,
@@ -91,9 +91,9 @@ ruleTester.run('file-name-matches-element', rule, {
       errors: [
         {
           message: 'File name should be "foo-bar-element" but was "foo-bar_element"',
-          type: 'ClassDeclaration'
-        }
-      ]
+          type: 'ClassDeclaration',
+        },
+      ],
     },
     {
       code,
@@ -102,9 +102,9 @@ ruleTester.run('file-name-matches-element', rule, {
       errors: [
         {
           message: 'File name should be "foo-bar-element" or "foo-bar" but was "foo-bar-controller"',
-          type: 'ClassDeclaration'
-        }
-      ]
+          type: 'ClassDeclaration',
+        },
+      ],
     },
     {
       code,
@@ -113,9 +113,9 @@ ruleTester.run('file-name-matches-element', rule, {
       errors: [
         {
           message: 'File name should be "foo-bar-element" but was "foo-bar-controller"',
-          type: 'ClassDeclaration'
-        }
-      ]
-    }
-  ]
+          type: 'ClassDeclaration',
+        },
+      ],
+    },
+  ],
 })
