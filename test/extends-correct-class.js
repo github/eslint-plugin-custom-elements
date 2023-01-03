@@ -1,7 +1,7 @@
 const rule = require('../lib/rules/extends-correct-class')
 const RuleTester = require('eslint').RuleTester
 
-const ruleTester = new RuleTester({env: {es2020: true}})
+const ruleTester = new RuleTester({env: {es2020: true}, parserOptions: {sourceType: 'module'}})
 
 ruleTester.run('extends-correct-class', rule, {
   valid: [
@@ -15,6 +15,12 @@ ruleTester.run('extends-correct-class', rule, {
     {
       code: 'customElements.define("foo-bar", class extends HTMLElement {})',
       options: [{allowedSuperNames: ['HTMLGitHubElement']}],
+    },
+    {
+      code: 'import Foo from "other";customElements.define("foo-bar", Foo)',
+    },
+    {
+      code: 'import {Foo} from "other";customElements.define("foo-bar", Foo)',
     },
   ],
   invalid: [
