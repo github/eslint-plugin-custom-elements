@@ -124,7 +124,7 @@ describe('documentation', () => {
         '## Rule Details',
         '👎 Examples of **incorrect** code for this rule:',
         '👍 Examples of **correct** code for this rule:',
-        config.rules?.[doc]?.schema?.length ? '### Options' : '',
+        config.rules?.[doc]?.meta.schema?.length ? '### Options' : '',
         '## When Not To Use It',
         '## Version',
       ].filter(Boolean)
