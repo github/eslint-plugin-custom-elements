@@ -38,7 +38,6 @@ ruleTester.run('file-name-matches-element', rule, {
     {code, filename: 'foo_bar.js', options: [{transform: ['kebab', 'snake', 'pascal'], suffix: 'Element'}]},
     {code, filename: 'foo_bar_element.js', options: [{transform: ['kebab', 'snake'], suffix: ['Element']}]},
     {code, filename: 'fooBarElement.js', options: [{transform: ['kebab', 'pascal'], suffix: ['ElEmEnT']}]},
-    {code, filename: 'foo_bar_element.js', options: [{transform: ['kebab', 'snake'], suffix: ['Element']}]},
     {code, filename: 'bar_element.js', options: [{transform: ['kebab', 'snake'], prefix: ['Foo']}]},
     {code, filename: 'bar_element.js', options: [{transform: ['kebab', 'snake'], prefix: ['fOo']}]},
     {

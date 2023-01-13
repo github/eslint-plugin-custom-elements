@@ -6,10 +6,11 @@ module.exports = {
   env: {
     node: true,
   },
-  extends: ['plugin:github/recommended'],
+  extends: ['plugin:github/recommended', 'plugin:eslint-plugin/recommended'],
   rules: {
     'i18n-text/no-en': 'off',
     'import/no-commonjs': 'off',
+    'eslint-plugin/require-meta-docs-url': 'error',
   },
   overrides: [
     {

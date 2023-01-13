@@ -8,7 +8,6 @@ ruleTester.run('valid-tag-name', rule, {
     {code: 'customElements.define("foo-bar")'},
     {code: "customElements.define('foo-bar')"},
     {code: 'customElements.define(`foo-bar`)'},
-    {code: 'customElements.define("foo-bar")'},
     {code: 'customElements.define("m---···---")'},
     {code: 'customElements.define("aÀ-")'},
     {code: 'customElements.define("leiðinlegt-tíst")'},
@@ -86,20 +85,6 @@ ruleTester.run('valid-tag-name', rule, {
       errors: [
         {
           message: 'Custom Elements cannot be given the reserved name "annotation-xml"',
-          type: 'Literal',
-        },
-      ],
-    },
-    {
-      code: 'customElements.define("a-😶‍🌫️")',
-      options: [
-        {
-          onlyAlphanum: true,
-        },
-      ],
-      errors: [
-        {
-          message: 'Non ASCII Custom Elements have been disallowed',
           type: 'Literal',
         },
       ],

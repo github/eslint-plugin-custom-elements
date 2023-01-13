@@ -8,7 +8,6 @@ ruleTester.run('tag-name-matches-class', rule, {
     {code: "customElements.define('foo-bar-element', FooBarElement)"},
     {code: "customElements.define('foo-bar', FooBar)", options: [{suffix: ['Element']}]},
     {code: "customElements.define('foo-bar', FooBarElement)", options: [{suffix: ['Element']}]},
-    {code: "customElements.define('foo-bar', FooBarElement)", options: [{suffix: ['Element']}]},
     {code: "customElements.define('foo-bar', FooBarComponent)", options: [{suffix: 'Component'}]},
     {code: "customElements.define('foo-bar', FooBarElement)", options: [{suffix: ['Element', 'Component']}]},
     {code: "customElements.define('foo-bar', FooBarComponent)", options: [{suffix: ['Element', 'Component']}]},
