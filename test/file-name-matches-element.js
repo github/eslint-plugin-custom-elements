@@ -51,6 +51,10 @@ ruleTester.run('file-name-matches-element', rule, {
       filename: 'components/foo/foo-bar.ts',
       options: [{transform: 'kebab', suffix: ['Controller']}],
     },
+    {
+      code: 'window.customElements.define("foo-bar", class extends HTMLElement {})',
+      filename: 'any.js',
+    },
   ],
   invalid: [
     {
