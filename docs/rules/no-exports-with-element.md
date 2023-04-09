@@ -33,7 +33,7 @@ export class FooBarElement extends HTMLElement {
 // foo-bar-element.js
 import {myHelper} from './helpers.js'
 export class FooReadyEvent extends Event {
-  // ... 
+  // ...
 }
 
 export class FooBarElement extends HTMLElement {
