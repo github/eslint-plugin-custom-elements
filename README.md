@@ -1,4 +1,7 @@
-# eslint-plugin-custom-elements
+# eslint-plugin-custom-elements (archived)
+
+> [!WARNING]\
+> This project has been merged with [eslint-plugin-wc](https://github.com/43081j/eslint-plugin-wc). Please head there for updates and maintenance.
 
 This is an ESLint Plugin to help provide best practices for writing Custom Elements aka Web Components. It provides a set of custom rules which can be enforced for files that declare classes that extend from HTMLElement.
 
